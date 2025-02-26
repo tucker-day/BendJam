@@ -41,6 +41,7 @@ public class GradeManager : MonoBehaviour
 
     private void Start()
     {
+        //Setting Text To Default To Empty
         gradeTxt.text = string.Empty;
         accTxt.text = string.Empty;
         spdTxt.text = string.Empty;
@@ -50,11 +51,12 @@ public class GradeManager : MonoBehaviour
 
     private void Update()
     {
+        //Calculates The Grade And Changes Text / Color Accordingly
         switch(CalcGrade(accuracy, speed, style))
         {
             case 0:
                 gradeTxt.text = "S";
-                //Text Color Is Dark Green For Best
+                //Text Color Is Purple(?) For Best
                 gradeTxt.color = new Color(0.569f, 0f, 1f, 1.0f);
                 break;
             case 1:
@@ -88,11 +90,16 @@ public class GradeManager : MonoBehaviour
 
     private int CalcGrade(int a, int spd, int sty)
     {
-
+        //Takes The Average Of The 3 Variables
         double avg = (a + spd + sty) / 3;
+
+        //Always Rounds The Value Up To Nearest Integer
         avg = Math.Round(avg, 1, MidpointRounding.AwayFromZero);
+
+        //Changes Overall Rank To The Value Calculated, Followed By %
         overallTxt.text = avg.ToString() + "%";
 
+        //Checks For Overall Stats To Display The Rank Letter
         if(avg >= 95)
         {
             //0 For S Rank
