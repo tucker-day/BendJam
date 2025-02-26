@@ -1,18 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GradeManager : MonoBehaviour
 {
 
     [Header("Final Grade")]
-    //Final Grade Text & Implementation
+    //Final Grade Text
     [SerializeField]
     private TMP_Text gradeTxt;
-
-    [SerializeField]
-    private int finalGrade = 100;
 
 
     [Header("Grading Criteria - Text Objects")]
@@ -37,19 +36,21 @@ public class GradeManager : MonoBehaviour
     private int speed = 100;
     [SerializeField]
     private int style = 100;
-    [SerializeField]
-    private int overall = 100;
 
 
 
     private void Start()
     {
         gradeTxt.text = string.Empty;
+        accTxt.text = string.Empty;
+        spdTxt.text = string.Empty;
+        styleTxt.text = string.Empty;
+        overallTxt.text = string.Empty;
     }
 
     private void Update()
     {
-        switch(CalcGrade(finalGrade))
+        switch(CalcGrade(accuracy, speed, style))
         {
             case 0:
                 gradeTxt.text = "S";
@@ -85,30 +86,41 @@ public class GradeManager : MonoBehaviour
 
     }
 
-    private int CalcGrade(int grade)
+    private int CalcGrade(int a, int spd, int sty)
     {
-        if(finalGrade >= 95 && finalGrade <= 100)
+
+        double avg = (a + spd + sty) / 3;
+        avg = Math.Round(avg, 1, MidpointRounding.AwayFromZero);
+        overallTxt.text = avg.ToString() + "%";
+
+        if(avg >= 95)
         {
+            //0 For S Rank
             return 0;
         }
-        else if(finalGrade >= 80 && finalGrade <= 94)
+        else if(avg >= 80 && avg <= 94)
         {
+            //1 For A Rank
             return 1;
         }
-        else if(finalGrade >= 65 && finalGrade <= 79)
+        else if(avg >= 65 && avg <= 79)
         {
+            //2 For B Rank
             return 2;
         }
-        else if(finalGrade >= 50 && finalGrade <= 64)
+        else if(avg >= 50 && avg <= 64)
         {
+            //3 For C Rank
             return 3;
         }
-        else if(finalGrade >= 35 && finalGrade <= 49)
+        else if(avg >= 35 && avg <= 49)
         {
+            //4 For D Rank
             return 4;
         }
         else
         {
+            //5 For F Rank
             return 5;
         }
     }
