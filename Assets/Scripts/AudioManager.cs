@@ -111,10 +111,24 @@ public class AudioManager : MonoBehaviour
         currentlyFadingBGM = false;
     }
 
-    public void PlaySFX(string sfx)
+    public void PlaySFX_PitchShift(string sfx)
     {
         if (SFXList.TryGetValue(sfx, out AudioClip clip))
         {
+            SFXSource.pitch = ((float)UnityEngine.Random.Range(90, 110)) / 100f;
+            SFXSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.Log("SFX " + sfx + " does not exist!");
+        }
+    }
+
+    public void PlaySFX_NoPitchShift(string sfx)
+    {
+        if (SFXList.TryGetValue(sfx, out AudioClip clip))
+        {
+            SFXSource.pitch = 1;
             SFXSource.PlayOneShot(clip);
         }
         else
