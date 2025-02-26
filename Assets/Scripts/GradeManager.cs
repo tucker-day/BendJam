@@ -6,11 +6,41 @@ using UnityEngine;
 public class GradeManager : MonoBehaviour
 {
 
+    [Header("Final Grade")]
+    //Final Grade Text & Implementation
     [SerializeField]
     private TMP_Text gradeTxt;
 
     [SerializeField]
     private int finalGrade = 100;
+
+
+    [Header("Grading Criteria - Text Objects")]
+    //Grading Criteria (Accuracy, Speed, Style, Overall)
+    [SerializeField]
+    private TMP_Text accTxt;
+
+    [SerializeField]
+    private TMP_Text spdTxt;
+
+    [SerializeField]
+    private TMP_Text styleTxt;
+
+    [SerializeField]
+    private TMP_Text overallTxt;
+
+    [Header("Grading Criteria - Stats")]
+
+    [SerializeField]
+    private int accuracy = 100;
+    [SerializeField]
+    private int speed = 100;
+    [SerializeField]
+    private int style = 100;
+    [SerializeField]
+    private int overall = 100;
+
+
 
     private void Start()
     {
