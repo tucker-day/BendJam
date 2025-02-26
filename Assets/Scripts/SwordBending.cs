@@ -43,22 +43,33 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
         else if (rotating)
         {
+            //float oldY = blade_spline.GetRightTangent(grab_point).y;
+            //float oldX = blade_spline.GetRightTangent(grab_point).x;
+
             blade_spline.SetRightTangent(grab_point, mousePos);
-            if(blade_spline.GetPointCount() > grab_point)
+            
+            if(grab_point == blade_spline.GetPointCount()) { blade_spline.SetLeftTangent(grab_point, mousePos); }
+            if (blade_spline.GetPointCount() > grab_point)
             {
-                for (int i = grab_point + 1; i < blade_spline.GetPointCount(); i++)
-                {
-                    //Vector3 direction = blade_spline.GetPosition(i) - blade_spline.GetPosition(grab_point);
-                    //direction = Quaternion.Euler(blade_spline.GetRightTangent(grab_point)) * direction;
-                    blade_spline.SetPosition(i, blade_spline.GetRightTangent(grab_point) + blade_spline.GetPosition(i-1));
-                }
+                //for (int i = grab_point + 1; i < blade_spline.GetPointCount(); i++)
+                //{
+                //    //Vector3 direction = blade_spline.GetPosition(i) - blade_spline.GetPosition(grab_point);
+                //    //direction = Quaternion.Euler(blade_spline.GetRightTangent(grab_point)) * direction;
+                //    //Vector3 original_rotation = blade_spline.GetRightTangent(i);
+                //    //blade_spline.SetPosition(i, blade_spline.GetRightTangent(grab_point) + blade_spline.GetPosition(i-1));
+                //    //blade_spline.SetRightTangent(i, original_rotation);
+
+                //    float angle = (blade_spline.GetRightTangent(grab_point).y - oldY) + (blade_spline.GetRightTangent(grab_point).x - oldX);
+
+                //    blade_spline.SetPosition(i, calcRotation(blade_spline.GetPosition(grab_point), blade_spline.GetPosition(i), angle));
+                //}
             }
         }
 
-        //if (Input.GetMouseButtonDown(0) && rotating)
-        //{
-        //    EndRotate();
-        //}
+        if (Input.GetMouseButtonDown(0) && rotating)
+        {
+            EndRotate();
+        }
     }
 
     void GrabPoint(Vector3 mouse_position)
@@ -99,7 +110,6 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (!grabbing && !rotating)
         {
             GrabPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            EndGrab();
         }
     }
 
@@ -109,10 +119,34 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         {
             EndGrab();
         }
+    }
 
-        if (rotating)
+    public Vector3[] GetPoints()
+    {
+        Vector3[] points = new Vector3[blade_spline.GetPointCount() - 1];
+
+        for (int i = 1; i < blade_spline.GetPointCount(); i++)
         {
-            EndRotate();
+            points[i - 1] = blade_spline.GetPosition(i);
         }
+
+        return points;
+    }
+    
+    private Vector3 calcRotation(Vector3 origin, Vector3 point, float angle)
+    {
+        float sine = Mathf.Sin(angle);
+        float cosine = Mathf.Cos(angle);
+
+        point.x -= origin.x;
+        point.y -= origin.y;
+
+        float x_new = point.x * cosine - point.y * sine;
+        float y_new = point.x * sine + point.y * cosine;
+
+        point.x = x_new + origin.x;
+        point.y = y_new + origin.y;
+
+        return point;
     }
 }
