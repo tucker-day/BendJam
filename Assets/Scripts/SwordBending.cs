@@ -12,6 +12,7 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private Spline blade_spline;
 
     private bool grabbing = false;
+    private bool rotating = false;
     private int grab_point;
 
 
@@ -40,6 +41,15 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         {
             blade_spline.SetPosition(grab_point, mousePos);
         }
+        else if (rotating)
+        {
+            blade_spline.SetRightTangent(grab_point, mousePos);
+        }
+
+        if (Input.GetMouseButtonDown(0) && rotating)
+        {
+            EndRotate();
+        }
     }
 
     void GrabPoint(Vector3 mouse_position)
@@ -66,18 +76,28 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     void EndGrab()
     {
         grabbing = false;
+        Debug.Log("starting rotation");
+        rotating = true;
+    }
+
+    void EndRotate()
+    {
+        rotating = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        GrabPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (!grabbing && !rotating)
+        {
+            GrabPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         if (grabbing)
         {
-            grabbing = false;
+            EndGrab();
         }
     }
 }
