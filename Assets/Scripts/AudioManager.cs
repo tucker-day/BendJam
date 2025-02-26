@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource BGMSource;
     [SerializeField] private AudioSource SFXSource;
+    [SerializeField] private AudioSource loopingSFXSource;
 
     private void Awake()
     {
@@ -135,5 +136,23 @@ public class AudioManager : MonoBehaviour
         {
             Debug.Log("SFX " + sfx + " does not exist!");
         }
+    }
+
+    public void PlayLoopingSFX(string sfx)
+    {
+        if (SFXList.TryGetValue(sfx, out AudioClip clip))
+        {
+            loopingSFXSource.clip = clip;
+            loopingSFXSource.Play();
+        }
+        else
+        {
+            Debug.Log("SFX " + sfx + " does not exist!");
+        }
+    } 
+
+    public void StopLoopingSFX()
+    {
+        loopingSFXSource.Stop();
     }
 }
