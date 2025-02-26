@@ -1,11 +1,20 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
     static bool isPaused = false;
 
-    public GameObject settingsMenuPrefab;
-    public GameObject pauseButtons;
+    [SerializeField]
+    private GameObject settingsMenuPrefab;
+    [SerializeField]
+    private GameObject pauseButtons;
+
+    private void Awake()
+    {
+        isPaused = false;
+        Time.timeScale = 1.0f;
+    }
 
     private void Start()
     {
@@ -20,6 +29,7 @@ public class PauseMenuManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
 
     public void ResumeGame()
     {
@@ -43,6 +53,6 @@ public class PauseMenuManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        // Insert code to go to main menu scene here
+        SceneManager.LoadScene("MainMenu");
     }
 }
