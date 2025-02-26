@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseMenuManager : MonoBehaviour
 {
     static bool isPaused = false;
+
+    public GameObject settingsMenuPrefab;
+    public GameObject pauseButtons;
 
     private void Start()
     {
@@ -29,7 +30,15 @@ public class PauseMenuManager : MonoBehaviour
 
     public void GoToSettings()
     {
-        Debug.Log("Settings menu does not currently exist");
+        GameObject settingsMenu = Instantiate(settingsMenuPrefab, gameObject.GetComponentInParent<Transform>());
+        SettingsMenuManager settingsMenuManager = settingsMenu.GetComponent<SettingsMenuManager>();
+        settingsMenuManager.backButton.onClick.AddListener(ReturnFromSettings);
+        pauseButtons.SetActive(false);
+    }
+
+    public void ReturnFromSettings()
+    {
+        pauseButtons.SetActive(true);
     }
 
     public void GoToMainMenu()

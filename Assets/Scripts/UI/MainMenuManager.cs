@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] private GameObject mainMenu;
+
+    public GameObject settingsMenuPrefab;
+
     public void StartGameScene()
     {
         // Insert code to go to main game scene here
@@ -11,8 +13,16 @@ public class MainMenuManager : MonoBehaviour
 
     public void GoToSettings()
     {
-        Debug.Log("Settings menu does not currently exist");
+        GameObject settingsMenu = Instantiate(settingsMenuPrefab, gameObject.GetComponentInParent<Transform>());
+        SettingsMenuManager settingsMenuManager = settingsMenu.GetComponent<SettingsMenuManager>();
+        settingsMenuManager.backButton.onClick.AddListener(ReturnFromSettings);
+        mainMenu.SetActive(false);
     }    
+
+    public void ReturnFromSettings()
+    {
+        mainMenu.SetActive(true);
+    }
 
     public void ExitGame()
     {
