@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c03257da1e7f414429b967684d50f6c4, type: 3}
-  m_Name: TestDialogue
+  m_Name: TutorialDialogue
   m_EditorClassIdentifier: 
-  talkerSprite: {fileID: 21300000, guid: 3c4a12de8c9c29d47bf3e353ba6b380b, type: 3}
-  speakingVoiceKey: Voice1
-  speakerName: blowy
+  talkerSprite: {fileID: 21300000, guid: c65767dc9ee94774e86c53405d69bdda, type: 3}
+  speakingVoiceKey: DevVoice
+  speakerName: Devs Of This Game
   dialogue:
-  - im torch kljadflsdljkfljksaflkjsdlfkjslkjdflsglsdlgsljdgljsdljgsdjlgljksd
-  speed: 10
+  - Hello and welcome to the game :D
+  - We da devs woop woop
+  speed: 0.05
