@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         {
             gradeScreen.SetActive(true);
             gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
-            timer = 3.0f;
         }
        
     }
@@ -71,5 +70,17 @@ public class GameManager : MonoBehaviour
         timerTxt.text = timerStr;
     }
 
+    public void DoneSword()
+    {
+        isDone = true;
+    }
+
+    public void Continue()
+    {
+        isDone = false;
+        gradeScreen.SetActive(false);
+        timerTxt.color = Color.white;
+        timer = 3.0f;
+    }
 
 }
