@@ -77,7 +77,7 @@ public class DialogueSystem : MonoBehaviour
 
                 if (!continueDialogue)
                 {
-                    // AudioManager.instance.PlaySFX_PitchShift(dialogue.speakingVoiceKey);
+                    AudioManager.instance.PlaySFX_PitchShift(dialogue.speakingVoiceKey);
                     yield return new WaitForSeconds(dialogue.speed);
                 }
             }
