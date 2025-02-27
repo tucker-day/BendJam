@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TMP_Text timerTxt;
 
+    private GradeManager gradeManager;
+
+    [SerializeField]
+    private GameObject gradeScreen;
+
+    private bool isDone = false;
+
+
+    private void Awake()
+    {
+        gradeManager = FindAnyObjectByType<GradeManager>();
+        gradeScreen.SetActive(false);
+        isDone = false;
+    }
 
     void Start()
     {
@@ -21,8 +36,22 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime * 1f;
-        DisplayTimer();
+        if(!isDone)
+        {
+            timer -= Time.deltaTime * 1f;
+            DisplayTimer();
+
+            if (timer < 0 && gradeManager.speed > 0 && !isDone)
+            {
+                gradeManager.speed -= Time.deltaTime * 1f;
+            }
+        }
+        else if(isDone)
+        {
+            gradeScreen.SetActive(true);
+            timer = 300.0f;
+        }
+       
     }
 
     public void DisplayTimer()
@@ -33,9 +62,7 @@ public class GameManager : MonoBehaviour
         //When Timer Hits 0, Continues Counting Down In Red (And Removing "Speed" Points)
         if (timer <= 0)    
         {
-            timerTxt.color = new Color(0.87f, 0.09f, 0.09f, 1f);
-            
-            
+            timerTxt.color = new Color(0.87f, 0.09f, 0.09f, 1f);   
         }
 
         string timerStr = string.Format("{0:0}:{1:00}", minutes, seconds);
