@@ -777,13 +777,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1774888543}
     m_Modifications:
+    - target: {fileID: 22507597195326555, guid: 266a48595e9c85f449239e60c554691b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 617
+      objectReference: {fileID: 0}
+    - target: {fileID: 994014623373965012, guid: 266a48595e9c85f449239e60c554691b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 617
+      objectReference: {fileID: 0}
+    - target: {fileID: 1318200944160723405, guid: 266a48595e9c85f449239e60c554691b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 617
+      objectReference: {fileID: 0}
     - target: {fileID: 2911435105310403484, guid: 266a48595e9c85f449239e60c554691b, type: 3}
       propertyPath: m_Name
       value: GradeMenu
       objectReference: {fileID: 0}
     - target: {fileID: 2911435105310403484, guid: 266a48595e9c85f449239e60c554691b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107829396601698747, guid: 266a48595e9c85f449239e60c554691b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 617
       objectReference: {fileID: 0}
     - target: {fileID: 7509081442646054985, guid: 266a48595e9c85f449239e60c554691b, type: 3}
       propertyPath: m_Pivot.x

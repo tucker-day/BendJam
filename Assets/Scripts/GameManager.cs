@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Rendering.LookDev;
 
 public class GameManager : MonoBehaviour
 {
 
     //Timer & Text
     [Header("Timer")]
-    private float timer = 300.0f;
+    private float timer = 3.0f;
     [SerializeField]
     private TMP_Text timerTxt;
 
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gradeScreen;
 
-    private bool isDone = false;
+    public bool isDone = false;
 
 
     private void Awake()
@@ -49,7 +50,8 @@ public class GameManager : MonoBehaviour
         else if(isDone)
         {
             gradeScreen.SetActive(true);
-            timer = 300.0f;
+            gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
+            timer = 3.0f;
         }
        
     }
@@ -68,4 +70,6 @@ public class GameManager : MonoBehaviour
         string timerStr = string.Format("{0:0}:{1:00}", minutes, seconds);
         timerTxt.text = timerStr;
     }
+
+
 }
