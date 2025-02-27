@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03257da1e7f414429b967684d50f6c4, type: 3}
   m_Name: TestDialogue
   m_EditorClassIdentifier: 
-  talkerSprite: {fileID: 21300000, guid: c65767dc9ee94774e86c53405d69bdda, type: 3}
+  talkerSprite: {fileID: 21300000, guid: 4d1ab0c1f4dc99d48aa8e76446a69c2b, type: 3}
   speakingVoiceKey: Voice1
-  speakerName: Tucker
+  speakerName: Honorable Knight
   dialogue:
-  - The dialogue system works now.
-  - That's pretty cool.
-  - Okay bye.
+  - I'm a knight or something idk
   speed: 0.07
