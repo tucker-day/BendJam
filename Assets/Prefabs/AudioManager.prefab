@@ -48,7 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempBGMList: []
-  tempSFXList: []
+  tempSFXList:
+  - key: Voice1
+    clip: {fileID: 8300000, guid: b4965db662a9f6446bd24c053100ccac, type: 3}
   BGMSource: {fileID: 8636767175004710167}
   SFXSource: {fileID: -837564068311127944}
   loopingSFXSource: {fileID: 951359360689842112}
