@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Blueprint : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Blueprint : MonoBehaviour
     {
         new Print(
             new Vector3[] {Vector3.zero, Vector3.right},
-            new Vector3[] {Vector3.zero, Vector3.right, Vector3.right, Vector3.right, Vector3.right},
+            new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             12f
             )
     };
@@ -19,6 +20,15 @@ public class Blueprint : MonoBehaviour
 
     [SerializeField]
     private GameObject goal_prefab;
+    [SerializeField]
+    private GameObject sword;
+
+    private Spline sword_spline;
+
+    private void Start()
+    {
+        PlacePrint(0);
+    }
 
     public void PlacePrint(int index)
     {
@@ -32,6 +42,13 @@ public class Blueprint : MonoBehaviour
             goal_objects[i] = Instantiate(goal_prefab, coords[i], new Quaternion()).transform;
         }
         accuracyCalculator.SetGoalPoints(goal_objects);
+
+        sword_spline = Instantiate(sword, Vector3.zero, new Quaternion()).gameObject.GetComponent<SpriteShapeController>().spline;
+
+        for (int i = 0; i < sword_spline.GetPointCount(); i++)
+        {
+            sword_spline.SetPosition(i, blueprints[index].GetSplinePos()[i]);
+        }
     }
 
     public Print GetBlueprint(int index)
@@ -55,6 +72,11 @@ public class Print
     public Vector3[] GetCoords()
     {
         return this.goal_coordinates;
+    }
+
+    public Vector3[] GetSplinePos()
+    {
+        return this.spline_start_positions;
     }
 
     public float GetPar()
