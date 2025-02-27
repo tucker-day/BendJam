@@ -6,7 +6,6 @@ using System;
 
 public class AccuracyCalculator : MonoBehaviour
 {
-    [SerializeField]
     private Transform[] goal_points;
 
     private SwordBending blade;
@@ -17,12 +16,6 @@ public class AccuracyCalculator : MonoBehaviour
     void Start()
     {
         blade = FindFirstObjectByType<SwordBending>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(CalcAccuracy());
     }
 
     public float CalcAccuracy()
@@ -51,5 +44,10 @@ public class AccuracyCalculator : MonoBehaviour
         }
 
         return distance_total;
+    }
+
+    public void SetGoalPoints(Transform[] points)
+    {
+        goal_points = points;
     }
 }
