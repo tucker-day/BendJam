@@ -508,6 +508,10 @@ PrefabInstance:
       value: DevVoice
       objectReference: {fileID: 0}
     - target: {fileID: -861369778179748589, guid: 3557cce5b5ee5e243a6e6b9468056f8a, type: 3}
+      propertyPath: tempSFXList.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c1fed1da85e36474a98a6fc6456dcb37, type: 3}
+    - target: {fileID: -861369778179748589, guid: 3557cce5b5ee5e243a6e6b9468056f8a, type: 3}
       propertyPath: tempSFXList.Array.data[8].clip
       value: 
       objectReference: {fileID: 8300000, guid: ff86d3f504f64f647a3309776c649bf4, type: 3}
