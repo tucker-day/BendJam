@@ -56,11 +56,15 @@ MonoBehaviour:
   - key: Voice3
     clip: {fileID: 8300000, guid: 00916e6e841508a4abe1af5bf36a39f9, type: 3}
   - key: Blowtorch
-    clip: {fileID: 8300000, guid: b09adf2dfcc7523469366179302a8f11, type: 3}
+    clip: {fileID: 8300000, guid: c1fed1da85e36474a98a6fc6456dcb37, type: 3}
   - key: Failure
     clip: {fileID: 8300000, guid: 076acdd3c34822743a042bd1e61e4108, type: 3}
   - key: Victory
     clip: {fileID: 8300000, guid: d1b661da653cdc048828bb38a77fb076, type: 3}
+  - key: VictoryWorse
+    clip: {fileID: 8300000, guid: c8c667301b8ac6140b156b04074ea261, type: 3}
+  - key: VictoryBetter
+    clip: {fileID: 8300000, guid: 0274dbe2a1a873f48addd69da20a151b, type: 3}
   - key: Hammer
     clip: {fileID: 8300000, guid: 3eff3be89e1dc3942ab49f515dcb44f9, type: 3}
   - key: Click
