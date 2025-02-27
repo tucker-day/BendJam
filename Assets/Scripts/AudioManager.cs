@@ -53,6 +53,33 @@ public class AudioManager : MonoBehaviour
                 SFXList.Add(acwk.key, acwk.clip);
             }
 
+            if (PlayerPrefs.HasKey("masterVolume"))
+            {
+                SetVolumeMaster(PlayerPrefs.GetFloat("masterVolume"));
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("masterVolume", 1);
+            }
+
+            if (PlayerPrefs.HasKey("musicVolume"))
+            {
+                SetVolumeMusic(PlayerPrefs.GetFloat("musicVolume"));
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("musicVolume", 1);
+            }
+
+            if (PlayerPrefs.HasKey("sfxVolume"))
+            {
+                SetVolumeSFX(PlayerPrefs.GetFloat("sfxVolume"));
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("sfxVolume", 1);
+            }
+
             DontDestroyOnLoad(gameObject);
             instance = this;
         }
@@ -165,15 +192,18 @@ public class AudioManager : MonoBehaviour
     public void SetVolumeMaster(float volume)
     {
         mixer.SetFloat("masterVolume", Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * (0 - -80) / 4f + 0);
+        PlayerPrefs.SetFloat("masterVolume", volume);
     }
 
     public void SetVolumeMusic(float volume)
     {
         mixer.SetFloat("musicVolume", Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * (0 - -80) / 4f + 0);
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     public void SetVolumeSFX(float volume)
     {
         mixer.SetFloat("sfxVolume", Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * (0 - -80) / 4f + 0);
+        PlayerPrefs.SetFloat("sfxVolume", volume);
     }
 }

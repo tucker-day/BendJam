@@ -7,6 +7,12 @@ public class SettingsMenuManager : MonoBehaviour
 
     [SerializeField]
     private GameObject audioMenu;
+    [SerializeField]
+    private Slider masterAudioSlider;
+    [SerializeField]
+    private Slider musicAudioSlider;
+    [SerializeField]
+    private Slider sfxAudioSlider;
 
     [SerializeField]
     private GameObject controlsMenu;
@@ -24,6 +30,10 @@ public class SettingsMenuManager : MonoBehaviour
     {
         audioMenu.SetActive(true);
         audioOpen = true;
+
+        musicAudioSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        masterAudioSlider.value = PlayerPrefs.GetFloat("masterVolume");
+        sfxAudioSlider.value = PlayerPrefs.GetFloat("sfxVolume");
     }
 
     public void ControlsButtonPressed()
@@ -41,5 +51,20 @@ public class SettingsMenuManager : MonoBehaviour
             audioOpen = false;
             controlsOpen = false;
         }
+    }
+
+    public void ChangeMasterVolumeSlider()
+    {
+        AudioManager.instance.SetVolumeMaster(masterAudioSlider.value);
+    }
+
+    public void ChangeSFXVolumeSlider()
+    {
+        AudioManager.instance.SetVolumeSFX(sfxAudioSlider.value);
+    }
+
+    public void ChangeMusicVolumeSlider()
+    {
+        AudioManager.instance.SetVolumeMusic(musicAudioSlider.value);
     }
 }
