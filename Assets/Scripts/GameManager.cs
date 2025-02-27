@@ -73,6 +73,22 @@ public class GameManager : MonoBehaviour
     public void DoneSword()
     {
         isDone = true;
+        if(gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 0)
+        {
+            AudioManager.instance.PlaySFX_NoPitchShift("VictoryBetter");
+        }
+        else if (gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 1 || gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 2)
+        {
+            AudioManager.instance.PlaySFX_NoPitchShift("Victory");
+        }
+        else if(gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 3 || gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 4)
+        {
+            AudioManager.instance.PlaySFX_NoPitchShift("VictoryWorse");
+        }
+        else if(gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 5)
+        {
+            AudioManager.instance.PlaySFX_NoPitchShift("Failure");
+        }
     }
 
     public void Continue()

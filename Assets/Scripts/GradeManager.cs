@@ -83,7 +83,7 @@ public class GradeManager : MonoBehaviour
 
     }
 
-    private int CalcGrade(int a, float spd, int sty)
+    public int CalcGrade(int a, float spd, int sty)
     {
     
         //Always Rounds The Value Up To Nearest Integer
