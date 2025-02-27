@@ -19,8 +19,7 @@ public class GradeManager : MonoBehaviour
     [SerializeField]
     private TMP_Text accTxt;
 
-    [SerializeField]
-    private TMP_Text spdTxt;
+    public TMP_Text spdTxt;
 
     [SerializeField]
     private TMP_Text styleTxt;
@@ -86,11 +85,9 @@ public class GradeManager : MonoBehaviour
 
     private int CalcGrade(int a, float spd, int sty)
     {
-        //Takes The Average Of The 3 Variables
-        double avg = (a + spd + sty) / 3;
-
+    
         //Always Rounds The Value Up To Nearest Integer
-        avg = Math.Round(avg, 1, MidpointRounding.AwayFromZero);
+        int avg = (int)Math.Round(((a + spd + sty) / 3), 0, MidpointRounding.AwayFromZero);
 
         //Changes Overall Rank To The Value Calculated, Followed By %
         overallTxt.text = avg.ToString() + "%";
