@@ -29,13 +29,9 @@ public class GradeManager : MonoBehaviour
     private TMP_Text overallTxt;
 
     [Header("Grading Criteria - Stats")]
-
-    [SerializeField]
-    private int accuracy = 100;
-    [SerializeField]
-    private int speed = 100;
-    [SerializeField]
-    private int style = 100;
+    public int accuracy = 100;
+    public float speed = 100.0f;
+    public int style = 100;
 
 
 
@@ -88,7 +84,7 @@ public class GradeManager : MonoBehaviour
 
     }
 
-    private int CalcGrade(int a, int spd, int sty)
+    private int CalcGrade(int a, float spd, int sty)
     {
         //Takes The Average Of The 3 Variables
         double avg = (a + spd + sty) / 3;
