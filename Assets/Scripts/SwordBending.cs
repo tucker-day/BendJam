@@ -79,10 +79,10 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         int closest_point = 0;
         float dist_to_mouse = 0;
 
-        for (int i = 0; i < blade_spline.GetPointCount(); i++)
+        for (int i = 1; i < blade_spline.GetPointCount(); i++)
         {
             float point_to_mouse = MathF.Sqrt(MathF.Pow((mouse_position.x - blade_spline.GetPosition(i).x), 2) + MathF.Pow((mouse_position.y - blade_spline.GetPosition(i).y), 2));
-            if (point_to_mouse < dist_to_mouse || i == 0) 
+            if (point_to_mouse < dist_to_mouse || i == 1) 
             {
                 dist_to_mouse = point_to_mouse;
                 closest_point = i;
@@ -96,8 +96,12 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     void EndGrab()
     {
         grabbing = false;
-        Debug.Log("starting rotation");
-        rotating = true;
+
+        if (grab_point != blade_spline.GetPointCount() - 1)
+        {
+            Debug.Log("starting rotation");
+            rotating = true;
+        }
     }
 
     void EndRotate()
