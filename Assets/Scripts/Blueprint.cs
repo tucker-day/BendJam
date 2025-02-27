@@ -31,6 +31,11 @@ public class Blueprint : MonoBehaviour
         }
 
     }
+
+    public Print GetBlueprint(int index)
+    {
+        return blueprints[index];
+    }
 }
 
 public class Print
@@ -46,5 +51,10 @@ public class Print
     public Vector3[] GetCoords()
     {
         return this.goal_coordinates;
+    }
+
+    public float GetPar()
+    {
+        return this.par_time; 
     }
 }
