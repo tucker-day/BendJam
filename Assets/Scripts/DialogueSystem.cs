@@ -69,11 +69,11 @@ public class DialogueSystem : MonoBehaviour
         foreach (string s in dialogue.dialogue)
         {
             continueDialogue = false;
-            dialogueBox.text = "";
+            dialogueBox.text = s;
 
-            foreach (char c in s)
+            for (int i = 0; i <= s.Length; i++)
             {
-                dialogueBox.text += c;
+                dialogueBox.maxVisibleCharacters = i;
 
                 if (!continueDialogue)
                 {
