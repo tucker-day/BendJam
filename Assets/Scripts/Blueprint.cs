@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Blueprint : MonoBehaviour
 {
-    [SerializeField]
-    private Print[] blueprints;
+    private Print[] blueprints =
+    {
+        new Print(
+            new Vector3[] {Vector3.zero, Vector3.right},
+            12f
+            )
+    };
+
+    private void Start()
+    {
+        PlacePrint(0);
+    }
 
     [SerializeField]
     private GameObject goal_prefab;
@@ -25,9 +36,11 @@ public class Blueprint : MonoBehaviour
 public class Print
 {
     private Vector3[] goal_coordinates;
-    public Print(Vector3[] g_coords)
+    private float par_time;
+    public Print(Vector3[] g_coords, float par)
     {
         this.goal_coordinates = g_coords;
+        this.par_time = par;
     }
 
     public Vector3[] GetCoords()
