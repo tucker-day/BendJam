@@ -122,15 +122,15 @@ public class GameManager : MonoBehaviour
             printManager.PlacePrint(current_print);
         }else
         {
-            if (totalSRanks >= 3)
+            if (totalSRanks >= (printManager.PrintCount() - 1))
             {
                 SceneManager.LoadScene("Ending4");
             }
-            else if (totalFRanks >= 3)
+            else if (totalFRanks >= (printManager.PrintCount() - 1))
             {
                 SceneManager.LoadScene("Ending2");
             }
-            else if (totalSpeed < 35)
+            else if (totalSpeedAvg < 35)
             {
                 SceneManager.LoadScene("Ending3");
             }
