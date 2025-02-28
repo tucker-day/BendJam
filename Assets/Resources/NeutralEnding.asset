@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c03257da1e7f414429b967684d50f6c4, type: 3}
-  m_Name: TooSlowEnding
+  m_Name: NeutralEnding
   m_EditorClassIdentifier: 
   talkerSprite: {fileID: 21300000, guid: 475748d91de87fa49b4631518fcfef4b, type: 3}
   speakingVoiceKey: DevVoice
   speakerName: Devs
   dialogue:
   - Well, here we are at the end.
-  - You were a simple soul, unbothered by the world around you.
-  - You took your time on every masterpiece you worked on. Unfortunately, your weapons
-    took so long to make
-  - that even thousands of years later, the world remains unchanged, still in medieval
-    ages.
-  - At least you had a good time doing it though...
-  - Thanks for playing! Ending 3/5
-  speed: 12
+  - Your life was fairly normal, nothing of note really stood out to anyone.
+  - Your work was considered of normal quality, not terrible but not to be used by
+    anyone important.
+  - Sometimes, in the end, no matter how hard you try, you always fall short of first
+    place.
+  - At least you had fun doing it.
+  - Thanks for playing! Ending 5/5
+  speed: 17
