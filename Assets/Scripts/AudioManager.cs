@@ -94,7 +94,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("BGM " + bgm + " does not exist!");
+            //Debug.Log("BGM " + bgm + " does not exist!");
         }
     }
 
@@ -106,7 +106,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("BGM " + bgm + " does not exist!");
+            //Debug.Log("BGM " + bgm + " does not exist!");
         }
     }
 
@@ -154,7 +154,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("SFX " + sfx + " does not exist!");
+            //Debug.Log("SFX " + sfx + " does not exist!");
         }
     }
 
@@ -167,7 +167,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("SFX " + sfx + " does not exist!");
+            //Debug.Log("SFX " + sfx + " does not exist!");
         }
     }
 
@@ -180,7 +180,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("SFX " + sfx + " does not exist!");
+            //Debug.Log("SFX " + sfx + " does not exist!");
         }
     } 
 
