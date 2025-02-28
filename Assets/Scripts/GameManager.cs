@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(!isDone)
+        if(!isDone && !printManager.dialoguePlaying)
         {
             timer -= Time.deltaTime * 1f;
             DisplayTimer();
@@ -81,40 +81,43 @@ public class GameManager : MonoBehaviour
 
     public void DoneSword()
     {
-        isDone = true;
-        if(gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 0)
+        if (!printManager.dialoguePlaying)
         {
-            AudioManager.instance.PlaySFX_NoPitchShift("VictoryBetter");
-            totalSRanks++;
-        }
-        else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 1 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 2)
-        {
-            AudioManager.instance.PlaySFX_NoPitchShift("Victory");
-        }
-        else if(gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 3 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 4)
-        {
-            AudioManager.instance.PlaySFX_NoPitchShift("VictoryWorse");
-        }
-        else if(gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 5)
-        {
-            AudioManager.instance.PlaySFX_NoPitchShift("Failure");
-            totalFRanks++;
-        }
+            isDone = true;
+            if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 0)
+            {
+                AudioManager.instance.PlaySFX_NoPitchShift("VictoryBetter");
+                totalSRanks++;
+            }
+            else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 1 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 2)
+            {
+                AudioManager.instance.PlaySFX_NoPitchShift("Victory");
+            }
+            else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 3 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 4)
+            {
+                AudioManager.instance.PlaySFX_NoPitchShift("VictoryWorse");
+            }
+            else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 5)
+            {
+                AudioManager.instance.PlaySFX_NoPitchShift("Failure");
+                totalFRanks++;
+            }
 
-        printManager.CleanPrint();
-        current_print++;
+            printManager.CleanPrint();
+            current_print++;
 
-        gradeScreen.SetActive(true);
-        gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
-        gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
-        gradeManager.SetAccuracyText();
-        gradeManager.style = printManager.GetCurrentSword().GetComponent<SwordBending>().GetPolishScore();
-        gradeManager.SetStyleText();
+            gradeScreen.SetActive(true);
+            gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
+            gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
+            gradeManager.SetAccuracyText();
+            gradeManager.style = printManager.GetCurrentSword().GetComponent<SwordBending>().GetPolishScore();
+            gradeManager.SetStyleText();
 
-        totalAccuracy += accuracyCalculator.CalcAccuracy();
-        totalSpeed += (int)gradeManager.speed;
+            totalAccuracy += accuracyCalculator.CalcAccuracy();
+            totalSpeed += (int)gradeManager.speed;
 
-        gradeManager.speed = 100;
+            gradeManager.speed = 100;
+        }
     }
 
     public void Continue()
