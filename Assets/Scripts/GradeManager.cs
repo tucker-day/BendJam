@@ -92,6 +92,9 @@ public class GradeManager : MonoBehaviour
         //Changes Overall Rank To The Value Calculated, Followed By %
         overallTxt.text = avg.ToString() + "%";
 
+        //Temporarily Displays The Style Percent
+        styleTxt.text = style.ToString() + "%";
+
         //Checks For Overall Stats To Display The Rank Letter
         if(avg >= 95)
         {
