@@ -19,6 +19,9 @@ MonoBehaviour:
   - Hello and welcome to the game!
   - Throughout the story, you will need to make a sword according to the current
     customer's needs.
-  - Feel free to try it out here, hold left click and drag to warp parts of the sword.
+  - Feel free to try it out here, hold left click OR right click and drag to warp
+    parts of the sword.
+  - Press 'F' and hold either right OR left click and drag in an UPWARDS motion to
+    polish.
   - When you're ready to move on, hit the 'Done' button! Good luck!
   speed: 17
