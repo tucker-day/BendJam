@@ -31,7 +31,6 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         blade = GetComponent<SpriteShapeController>();
         blade_spline = blade.spline;
-        Debug.Log("BENDING SCRIPT IS HERE");
 
         blade.spriteShapeRenderer.color = new Color(1 - polish,1 - polish,1 - polish);
     }
@@ -77,8 +76,6 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         //Change To Grabbing Cursor
         Cursor.SetCursor(grabH, Vector2.zero, CursorMode.Auto);
 
-        Debug.Log("Grabbing!");
-
         int closest_point = 0;
         float dist_to_mouse = 0;
 
@@ -105,7 +102,6 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         if (grab_point != blade_spline.GetPointCount() - 1)
         {
-            Debug.Log("starting rotation");
             rotating = true;
         }
     }
@@ -158,7 +154,6 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             {
                 polish = 0;
             }
-            Debug.Log("Polish level is: " + polish);
             blade.spriteShapeRenderer.color = new Color(1 - polish, 1 - polish, 1 - polish);
         }
     }
