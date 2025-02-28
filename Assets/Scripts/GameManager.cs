@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public bool isDone = false;
 
+    private int current_print = 1;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
 
         //Timer Text Is Defaulted To Empty
         timerTxt.text = string.Empty;
+        printManager.PlacePrint(current_print);
     }
 
     void Update()
@@ -51,13 +53,6 @@ public class GameManager : MonoBehaviour
             {
                 gradeManager.speed -= Time.deltaTime * 1f;
             }
-        }
-        else if(isDone)
-        {
-            gradeScreen.SetActive(true);
-            gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
-            gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
-            gradeManager.SetAccuracyText();
         }
        
     }
@@ -98,10 +93,17 @@ public class GameManager : MonoBehaviour
         }
 
         printManager.CleanPrint();
+        current_print++;
+
+        gradeScreen.SetActive(true);
+        gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
+        gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
+        gradeManager.SetAccuracyText();
     }
 
     public void Continue()
     {
+        printManager.PlacePrint(current_print);
         isDone = false;
         gradeScreen.SetActive(false);
         timerTxt.color = Color.white;
@@ -110,6 +112,8 @@ public class GameManager : MonoBehaviour
     public void SetTimer(float parTime)
     {
         timer = parTime;
+        timerTxt.color = Color.white;
+        DisplayTimer();
     }
 
 }
