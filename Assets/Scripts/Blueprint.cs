@@ -50,7 +50,7 @@ public class Blueprint : MonoBehaviour
             ),
 
         new Print( //Royal - Picture Frame
-            new Vector3[] { new Vector3(0f, 1.5f, 0), new Vector3(3f, 1.5f, 0), new Vector3(3f, -1.35f, 0), new Vector3(1f, -1.35f, 0)},
+            new Vector3[] { new Vector3(0f, 1.5f, 0), new Vector3(3f, 1.5f, 0), new Vector3(3f, -1.35f, 0), new Vector3(1.3f, -1.35f, 0)},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             12f
             ),
@@ -94,8 +94,8 @@ public class Blueprint : MonoBehaviour
         blueprints[3].SetPrintGuide(blueprint_layouts[0]);
         blueprints[4].SetPrintGuide(blueprint_layouts[1]); //sickle shape
         blueprints[5].SetPrintGuide(blueprint_layouts[2]); //bow shape
-        blueprints[6].SetPrintGuide(blueprint_layouts[0]);
-        blueprints[7].SetPrintGuide(blueprint_layouts[0]);
+        blueprints[6].SetPrintGuide(blueprint_layouts[3]); // frame
+        blueprints[7].SetPrintGuide(blueprint_layouts[4]); // sine
     }
 
     public void PlacePrint(int index)
