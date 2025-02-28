@@ -20,6 +20,7 @@ public class AccuracyCalculator : MonoBehaviour
 
     public int CalcAccuracy()
     {
+        blade = FindFirstObjectByType<SwordBending>();
         blade_points = blade.GetPoints();
         float distance_total = 0;
 
