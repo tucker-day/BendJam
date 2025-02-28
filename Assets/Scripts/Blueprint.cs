@@ -71,7 +71,6 @@ public class Blueprint : MonoBehaviour
     {
         game_manager = FindAnyObjectByType<GameManager>();
         SetPrintVisuals();
-        PlacePrint(4);
     }
 
     private void SetPrintVisuals()
