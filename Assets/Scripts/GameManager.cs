@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private GradeManager gradeManager;
     private AccuracyCalculator accuracyCalculator;
     private Blueprint printManager;
+    private SwordBending current_sword;
 
     [SerializeField]
     private GameObject gradeScreen;
@@ -107,6 +108,8 @@ public class GameManager : MonoBehaviour
         gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
         gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
         gradeManager.SetAccuracyText();
+        gradeManager.style = printManager.GetCurrentSword().GetComponent<SwordBending>().GetPolishScore();
+        gradeManager.SetStyleText();
 
         totalAccuracy += accuracyCalculator.CalcAccuracy();
         totalSpeed += (int)gradeManager.speed;
