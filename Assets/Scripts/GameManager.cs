@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour
 
         totalAccuracy += accuracyCalculator.CalcAccuracy();
         totalSpeed += (int)gradeManager.speed;
+
+        gradeManager.speed = 100;
     }
 
     public void Continue()
