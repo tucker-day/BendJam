@@ -62,6 +62,9 @@ public class Blueprint : MonoBehaviour
             ),
     };
 
+    [SerializeField]
+    private List<DialogueStorage> dialogueStorage;
+
     [Header("Other needed objects")]
     [SerializeField]
     private AccuracyCalculator accuracyCalculator;
@@ -70,6 +73,8 @@ public class Blueprint : MonoBehaviour
     private GameObject goal_prefab;
     [SerializeField]
     private GameObject sword;
+    [SerializeField]
+    private DialogueSystem dialogueBox;
 
     private GameManager game_manager;
 
@@ -78,6 +83,8 @@ public class Blueprint : MonoBehaviour
     private GameObject current_sword;
     private Transform[] goal_objects;
     private GameObject current_layout;
+
+    public bool dialoguePlaying = false;
 
     private void Start()
     {
@@ -99,12 +106,25 @@ public class Blueprint : MonoBehaviour
 
     public void PlacePrint(int index)
     {
-        
+        StartCoroutine(WaitForDialogueBeforePlacePrint(index));
+    }
+
+    public IEnumerator WaitForDialogueBeforePlacePrint(int index)
+    {
+        dialogueBox.StartDialogue(dialogueStorage[index - 1]);
+
+        dialoguePlaying = true;
+        while (dialogueBox.coroutineRunning)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        dialoguePlaying = false;
+
         Vector3[] coords = blueprints[index].GetCoords();
 
         goal_objects = new Transform[coords.Length];
 
-        for(int i = 0; i < coords.Length; i++)
+        for (int i = 0; i < coords.Length; i++)
         {
             goal_objects[i] = Instantiate(goal_prefab, coords[i], new Quaternion()).transform;
         }
@@ -141,6 +161,11 @@ public class Blueprint : MonoBehaviour
     public int PrintCount()
     {
         return blueprints.Length;
+    }
+
+    public GameObject GetCurrentSword()
+    {
+        return current_sword;
     }
 }
 

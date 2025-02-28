@@ -51,6 +51,15 @@ MonoBehaviour:
   - {fileID: 6723716235605817509, guid: 38e8e8b96de099f4c82ef5df5000d042, type: 3}
   - {fileID: 4067530279319047953, guid: cd8ad4f5edb9b93428b60aa38613311f, type: 3}
   - {fileID: 6732191539881904833, guid: 9e1de3c6fc016f849b0d3808b60aca32, type: 3}
+  dialogueStorage:
+  - {fileID: 11400000, guid: 9c6f95d10cf32c444bb5e602ea1b7b5f, type: 2}
+  - {fileID: 11400000, guid: 9ad3d2e6310f4ab48a2af1972ef67746, type: 2}
+  - {fileID: 11400000, guid: 4f21350a13d46ba49aefe216d710ce50, type: 2}
+  - {fileID: 11400000, guid: 42aed706c4c84a44a944a179a9df653c, type: 2}
+  - {fileID: 11400000, guid: 2e66d37f30f2fe14a8f1cc6d0c0841ad, type: 2}
+  - {fileID: 11400000, guid: 2e66d37f30f2fe14a8f1cc6d0c0841ad, type: 2}
+  - {fileID: 11400000, guid: 2e66d37f30f2fe14a8f1cc6d0c0841ad, type: 2}
   accuracyCalculator: {fileID: 0}
   goal_prefab: {fileID: 1192594125576591293, guid: 32f60a776a0631f4590b2492b184c54f, type: 3}
   sword: {fileID: 6238732398707989850, guid: b84fdad7aab6f09499b88e84267fb543, type: 3}
+  dialogueBox: {fileID: 0}
