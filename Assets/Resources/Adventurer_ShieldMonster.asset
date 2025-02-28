@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03257da1e7f414429b967684d50f6c4, type: 3}
   m_Name: Adventurer_ShieldMonster
   m_EditorClassIdentifier: 
-  talkerSprite: {fileID: 0}
+  talkerSprite: {fileID: 21300000, guid: d60917ec8cea25d40b035c91ccf16247, type: 3}
   speakingVoiceKey: Voice1
   speakerName: Adventurer
   dialogue:

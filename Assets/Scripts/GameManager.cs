@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     private GradeManager gradeManager;
     private AccuracyCalculator accuracyCalculator;
+    private Blueprint printManager;
 
     [SerializeField]
     private GameObject gradeScreen;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
         gradeManager = FindAnyObjectByType<GradeManager>();
         accuracyCalculator = FindAnyObjectByType<AccuracyCalculator>();
+        printManager = FindAnyObjectByType<Blueprint>();
         gradeScreen.SetActive(false);
         isDone = false;
     }
@@ -94,6 +96,8 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.instance.PlaySFX_NoPitchShift("Failure");
         }
+
+        printManager.CleanPrint();
     }
 
     public void Continue()
