@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 673164513070893259, guid: b07792b9ed21911479e4987de4041c4c, type: 3}
   - {fileID: 6723716235605817509, guid: 38e8e8b96de099f4c82ef5df5000d042, type: 3}
   - {fileID: 4067530279319047953, guid: cd8ad4f5edb9b93428b60aa38613311f, type: 3}
+  - {fileID: 6732191539881904833, guid: 9e1de3c6fc016f849b0d3808b60aca32, type: 3}
   accuracyCalculator: {fileID: 0}
   goal_prefab: {fileID: 1192594125576591293, guid: 32f60a776a0631f4590b2492b184c54f, type: 3}
   sword: {fileID: 6238732398707989850, guid: b84fdad7aab6f09499b88e84267fb543, type: 3}

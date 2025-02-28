@@ -88,9 +88,9 @@ public class Blueprint : MonoBehaviour
     private void SetPrintVisuals()
     {
         blueprints[0].SetPrintGuide(blueprint_layouts[0]); //straight sword
-        blueprints[1].SetPrintGuide(blueprint_layouts[0]);
-        blueprints[2].SetPrintGuide(blueprint_layouts[0]);
-        blueprints[3].SetPrintGuide(blueprint_layouts[0]);
+        blueprints[1].SetPrintGuide(blueprint_layouts[5]);
+        blueprints[2].SetPrintGuide(blueprint_layouts[5]);
+        blueprints[3].SetPrintGuide(blueprint_layouts[5]);
         blueprints[4].SetPrintGuide(blueprint_layouts[1]); //sickle shape
         blueprints[5].SetPrintGuide(blueprint_layouts[2]); //bow shape
         blueprints[6].SetPrintGuide(blueprint_layouts[3]); // frame
