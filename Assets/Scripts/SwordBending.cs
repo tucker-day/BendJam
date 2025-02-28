@@ -20,6 +20,7 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         blade = GetComponent<SpriteShapeController>();
         blade_spline = blade.spline;
+        Debug.Log("BENDING SCRIPT IS HERE");
     }
 
     
