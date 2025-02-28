@@ -56,10 +56,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ad3d2e6310f4ab48a2af1972ef67746, type: 2}
   - {fileID: 11400000, guid: 4f21350a13d46ba49aefe216d710ce50, type: 2}
   - {fileID: 11400000, guid: 42aed706c4c84a44a944a179a9df653c, type: 2}
-  - {fileID: 11400000, guid: 2e66d37f30f2fe14a8f1cc6d0c0841ad, type: 2}
-  - {fileID: 11400000, guid: 2e66d37f30f2fe14a8f1cc6d0c0841ad, type: 2}
-  - {fileID: 11400000, guid: 2e66d37f30f2fe14a8f1cc6d0c0841ad, type: 2}
+  - {fileID: 11400000, guid: 4bc04989b16dbc54dbc9fd6a27612171, type: 2}
+  - {fileID: 11400000, guid: 01404b7c7013e734ba1a31fe7449396e, type: 2}
+  - {fileID: 11400000, guid: 2a2e3724c58598a418d67580f1555c27, type: 2}
   accuracyCalculator: {fileID: 0}
   goal_prefab: {fileID: 1192594125576591293, guid: 32f60a776a0631f4590b2492b184c54f, type: 3}
   sword: {fileID: 6238732398707989850, guid: b84fdad7aab6f09499b88e84267fb543, type: 3}
   dialogueBox: {fileID: 0}
+  dialoguePlaying: 0
