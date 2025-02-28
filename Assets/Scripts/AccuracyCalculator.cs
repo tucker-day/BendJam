@@ -18,7 +18,7 @@ public class AccuracyCalculator : MonoBehaviour
         blade = FindFirstObjectByType<SwordBending>();
     }
 
-    public float CalcAccuracy()
+    public int CalcAccuracy()
     {
         blade_points = blade.GetPoints();
         float distance_total = 0;
@@ -42,8 +42,10 @@ public class AccuracyCalculator : MonoBehaviour
             distance_total += dist_to_goal;
             
         }
+        int negative_points = (int)(distance_total * 8);
+        if(negative_points > 100) { negative_points = 100; }
 
-        return distance_total;
+        return 100 - negative_points;
     }
 
     public void SetGoalPoints(Transform[] points)

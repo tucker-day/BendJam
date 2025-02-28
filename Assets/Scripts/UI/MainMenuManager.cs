@@ -7,6 +7,11 @@ public class MainMenuManager : MonoBehaviour
 
     public GameObject settingsMenuPrefab;
 
+    public void Start()
+    {
+        AudioManager.instance.PlayBGMFade("Bentnu", 1);
+    }
+
     public void StartGameScene()
     {
         SceneManager.LoadScene("MainGame");
