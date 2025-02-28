@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: TestDialogue
   m_EditorClassIdentifier: 
   talkerSprite: {fileID: 21300000, guid: 3c4a12de8c9c29d47bf3e353ba6b380b, type: 3}
-  speakingVoiceKey: Voice1
+  speakingVoiceKey: Voice3
   speakerName: blowy
   dialogue:
-  - im torch kljadflsdljkfljksaflkjsdlfkjslkjdflsglsdlgsljdgljsdljgsdjlgljksd
-  speed: 10
+  - im torch kljadflsdljkfljksaflkjsdlfkjslkjdflsglsdlgs ljdgljsdljgsdjlgljksd
+  - more text
+  speed: 15

@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
+using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public struct AudioClipWithKey
@@ -30,6 +32,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource SFXSource;
     [SerializeField] private AudioSource loopingSFXSource;
 
+    [Header("Mixer")]
+    [SerializeField] private AudioMixer mixer;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -38,17 +43,45 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
+            foreach (AudioClipWithKey acwk in tempBGMList)
+            {
+                BGMList.Add(acwk.key, acwk.clip);
+            }
+
+            foreach (AudioClipWithKey acwk in tempSFXList)
+            {
+                SFXList.Add(acwk.key, acwk.clip);
+            }
+
+            if (PlayerPrefs.HasKey("masterVolume"))
+            {
+                SetVolumeMaster(PlayerPrefs.GetFloat("masterVolume"));
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("masterVolume", 1);
+            }
+
+            if (PlayerPrefs.HasKey("musicVolume"))
+            {
+                SetVolumeMusic(PlayerPrefs.GetFloat("musicVolume"));
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("musicVolume", 1);
+            }
+
+            if (PlayerPrefs.HasKey("sfxVolume"))
+            {
+                SetVolumeSFX(PlayerPrefs.GetFloat("sfxVolume"));
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("sfxVolume", 1);
+            }
+
+            DontDestroyOnLoad(gameObject);
             instance = this;
-        }
-
-        foreach (AudioClipWithKey acwk in tempBGMList)
-        {
-            BGMList.Add(acwk.key, acwk.clip);
-        }
-
-        foreach (AudioClipWithKey acwk in tempSFXList)
-        {
-            SFXList.Add(acwk.key, acwk.clip);
         }
     }
 
@@ -154,5 +187,23 @@ public class AudioManager : MonoBehaviour
     public void StopLoopingSFX()
     {
         loopingSFXSource.Stop();
+    }
+
+    public void SetVolumeMaster(float volume)
+    {
+        mixer.SetFloat("masterVolume", Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * (0 - -80) / 4f + 0);
+        PlayerPrefs.SetFloat("masterVolume", volume);
+    }
+
+    public void SetVolumeMusic(float volume)
+    {
+        mixer.SetFloat("musicVolume", Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * (0 - -80) / 4f + 0);
+        PlayerPrefs.SetFloat("musicVolume", volume);
+    }
+
+    public void SetVolumeSFX(float volume)
+    {
+        mixer.SetFloat("sfxVolume", Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * (0 - -80) / 4f + 0);
+        PlayerPrefs.SetFloat("sfxVolume", volume);
     }
 }
