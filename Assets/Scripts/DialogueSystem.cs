@@ -14,7 +14,7 @@ public class DialogueSystem : MonoBehaviour
     public DialogueStorage dialogue;
     private RectTransform rectTransform;
     private Vector2 offscreenPos = new Vector2(0, -750);
-    private bool coroutineRunning = false;
+    public bool coroutineRunning = false;
     private bool continueDialogue = false;
 
     public void Start()
@@ -23,7 +23,7 @@ public class DialogueSystem : MonoBehaviour
         rectTransform.anchoredPosition = offscreenPos;
 
         // Temp thing. Remove later.
-        StartDialogue(dialogue);
+        // StartDialogue(dialogue);
     }
 
     public void Update()
@@ -101,6 +101,5 @@ public class DialogueSystem : MonoBehaviour
 
         continueDialogue = false;
         coroutineRunning = false;
-        gameObject.SetActive(false);
     }
 }
