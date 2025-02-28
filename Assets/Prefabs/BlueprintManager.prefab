@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8484969764308433343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7647529470487393013}
+  - component: {fileID: 671887617058935790}
+  m_Layer: 0
+  m_Name: BlueprintManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7647529470487393013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484969764308433343}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3796208, y: -0.3978787, z: 0.019327328}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671887617058935790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484969764308433343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39664fd67e8869946bb51c2f3859a6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blueprint_layouts:
+  - {fileID: 6732191539881904833, guid: 9e1de3c6fc016f849b0d3808b60aca32, type: 3}
+  - {fileID: 9129314600182453580, guid: 8eaf0cb7098114145bcc03108ede9703, type: 3}
+  - {fileID: 673164513070893259, guid: b07792b9ed21911479e4987de4041c4c, type: 3}
+  - {fileID: 6723716235605817509, guid: 38e8e8b96de099f4c82ef5df5000d042, type: 3}
+  - {fileID: 4067530279319047953, guid: cd8ad4f5edb9b93428b60aa38613311f, type: 3}
+  accuracyCalculator: {fileID: 0}
+  goal_prefab: {fileID: 1192594125576591293, guid: 32f60a776a0631f4590b2492b184c54f, type: 3}
+  sword: {fileID: 6238732398707989850, guid: b84fdad7aab6f09499b88e84267fb543, type: 3}
