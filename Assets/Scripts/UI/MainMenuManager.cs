@@ -39,4 +39,9 @@ public class MainMenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void PlayClick()
+    {
+        AudioManager.instance.PlaySFX_PitchShift("Click");
+    }
 }
