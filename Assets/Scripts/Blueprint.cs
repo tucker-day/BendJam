@@ -83,7 +83,6 @@ public class Blueprint : MonoBehaviour
     {
         game_manager = FindAnyObjectByType<GameManager>();
         SetPrintVisuals();
-        PlacePrint(6);
     }
 
     private void SetPrintVisuals()
@@ -137,6 +136,11 @@ public class Blueprint : MonoBehaviour
         }
         Destroy(current_sword);
         Destroy(current_layout);
+    }
+
+    public int PrintCount()
+    {
+        return blueprints.Length;
     }
 }
 

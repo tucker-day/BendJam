@@ -103,7 +103,13 @@ public class GameManager : MonoBehaviour
 
     public void Continue()
     {
-        printManager.PlacePrint(current_print);
+        if (current_print < printManager.PrintCount())
+        {
+            printManager.PlacePrint(current_print);
+        }else
+        {
+            //go to endings
+        }
         isDone = false;
         gradeScreen.SetActive(false);
         timerTxt.color = Color.white;
