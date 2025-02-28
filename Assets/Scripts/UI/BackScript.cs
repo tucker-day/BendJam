@@ -9,5 +9,6 @@ public class BackScript : MonoBehaviour
     public void BackButton()
     {
         SceneManager.LoadScene("MainMenu");
+        AudioManager.instance.PlaySFX_NoPitchShift("Click");
     }
 }
