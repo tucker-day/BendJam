@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
 
     private short totalSRanks = 0;
     private short totalFRanks = 0;
-    private short totalSpeed = 1000;
-    private short totalAccuracy = 1000;
+    private int totalSpeed = 0;
+    private int totalAccuracy = 0;
 
     private void Awake()
     {
@@ -108,31 +108,36 @@ public class GameManager : MonoBehaviour
         gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
         gradeManager.SetAccuracyText();
 
-
-
-        if(totalSRanks >= 3)
-        {
-            SceneManager.LoadScene("Ending4");
-        }
-        else if(totalFRanks >= 3)
-        {
-            SceneManager.LoadScene("Ending2");
-        }
-        else if()
-        {
-
-        }
-
+        totalAccuracy += accuracyCalculator.CalcAccuracy();
+        totalSpeed += (int)gradeManager.speed;
     }
 
     public void Continue()
     {
+        float totalAccuracyAvg = totalAccuracy / (printManager.PrintCount() - 1);
+        float totalSpeedAvg = totalSpeed / (printManager.PrintCount() - 1);
+
         if (current_print < printManager.PrintCount())
         {
             printManager.PlacePrint(current_print);
         }else
         {
-            //go to endings
+            if (totalSRanks >= 3)
+            {
+                SceneManager.LoadScene("Ending4");
+            }
+            else if (totalFRanks >= 3)
+            {
+                SceneManager.LoadScene("Ending2");
+            }
+            else if (totalSpeed < 35)
+            {
+                SceneManager.LoadScene("Ending3");
+            }
+            else if(totalAccuracyAvg < 35)
+            {
+                SceneManager.LoadScene("Ending1");
+            }
         }
         isDone = false;
         gradeScreen.SetActive(false);
