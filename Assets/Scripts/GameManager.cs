@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
             else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 1 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 2)
             {
                 AudioManager.instance.PlaySFX_NoPitchShift("Victory");
+                totalSRanks++;
             }
             else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 3 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 4)
             {
@@ -145,6 +146,10 @@ public class GameManager : MonoBehaviour
             else if(totalAccuracyAvg < 35)
             {
                 SceneManager.LoadScene("Ending1");
+            }
+            else
+            {
+                SceneManager.LoadScene("Ending5");
             }
         }
         isDone = false;
