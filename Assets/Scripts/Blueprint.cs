@@ -84,6 +84,8 @@ public class Blueprint : MonoBehaviour
     private Transform[] goal_objects;
     private GameObject current_layout;
 
+    public bool dialoguePlaying = false;
+
     private void Start()
     {
         game_manager = FindAnyObjectByType<GameManager>();
@@ -111,10 +113,12 @@ public class Blueprint : MonoBehaviour
     {
         dialogueBox.StartDialogue(dialogueStorage[index - 1]);
 
+        dialoguePlaying = true;
         while (dialogueBox.coroutineRunning)
         {
             yield return new WaitForEndOfFrame();
         }
+        dialoguePlaying = false;
 
         Vector3[] coords = blueprints[index].GetCoords();
 
