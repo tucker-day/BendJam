@@ -19,33 +19,45 @@ public class Blueprint : MonoBehaviour
             12f
             ),
 
-        new Print( //Honourable Knight
+        new Print( //Honourable Knight - Wall
             new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(-1, 1.5f, 0), new Vector3(-2, 2.5f, 0)},
             12f
             ),
 
-        new Print( //City Guard
+        new Print( //City Guard - Wagon
             new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0.5f, -0.5f, 0), new Vector3(-0.5f, 0.5f, 0), new Vector3(0.5f, 1.5f, 0), new Vector3(-0.5f, 2.5f, 0)},
             12f
             ),
 
-        new Print( //Adventurer
+        new Print( //Adventurer - Fire
             new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(1f, -0.5f, 0), new Vector3(2f, 0, 0), new Vector3(3f, -0.5f, 0), new Vector3(4f, -1.35f, 0)},
             12f
             ),
 
-        new Print( //Farmer
+        new Print( //Farmer - Sickle
             new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(-1.15f, 0.5f, 0), new Vector3(-1f, 1.5f, 0), new Vector3(1f, 1.6f, 0)},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             12f
             ),
 
-        new Print( //Thief
+        new Print( //Adventurer - Bow
             new Vector3[] { new Vector3(0.6f, 0.8f, 0), new Vector3(4.3f, 1f, 0)},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
+            12f
+            ),
+
+        new Print( //Royal - Picture Frame
+            new Vector3[] { new Vector3(0f, 1.5f, 0), new Vector3(3f, 1.5f, 0), new Vector3(3f, -1.35f, 0), new Vector3(1f, -1.35f, 0)},
+            new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
+            12f
+            ),
+
+        new Print( //Royal - Sine
+            new Vector3[] { new Vector3(-0.8f, -0.5f, 0), new Vector3(0.8f, 0.5f, 0), new Vector3(-0.8f, 1.5f, 0), new Vector3(0.8f, 2.5f, 0)},
+            new Vector3[] { new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             12f
             ),
     };
@@ -71,6 +83,7 @@ public class Blueprint : MonoBehaviour
     {
         game_manager = FindAnyObjectByType<GameManager>();
         SetPrintVisuals();
+        PlacePrint(6);
     }
 
     private void SetPrintVisuals()
@@ -81,6 +94,8 @@ public class Blueprint : MonoBehaviour
         blueprints[3].SetPrintGuide(blueprint_layouts[0]);
         blueprints[4].SetPrintGuide(blueprint_layouts[1]); //sickle shape
         blueprints[5].SetPrintGuide(blueprint_layouts[2]); //bow shape
+        blueprints[6].SetPrintGuide(blueprint_layouts[0]);
+        blueprints[7].SetPrintGuide(blueprint_layouts[0]);
     }
 
     public void PlacePrint(int index)
