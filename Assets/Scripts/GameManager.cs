@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.Rendering.LookDev;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class GameManager : MonoBehaviour
     public bool isDone = false;
 
     private int current_print = 1;
+
+    private short totalSRanks = 0;
+    private short totalFRanks = 0;
+    private short totalSpeed = 1000;
+    private short totalAccuracy = 1000;
 
     private void Awake()
     {
@@ -78,6 +84,7 @@ public class GameManager : MonoBehaviour
         if(gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 0)
         {
             AudioManager.instance.PlaySFX_NoPitchShift("VictoryBetter");
+            totalSRanks++;
         }
         else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 1 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 2)
         {
@@ -90,6 +97,7 @@ public class GameManager : MonoBehaviour
         else if(gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 5)
         {
             AudioManager.instance.PlaySFX_NoPitchShift("Failure");
+            totalFRanks++;
         }
 
         printManager.CleanPrint();
@@ -99,6 +107,22 @@ public class GameManager : MonoBehaviour
         gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
         gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
         gradeManager.SetAccuracyText();
+
+
+
+        if(totalSRanks >= 3)
+        {
+            SceneManager.LoadScene("Ending4");
+        }
+        else if(totalFRanks >= 3)
+        {
+            SceneManager.LoadScene("Ending2");
+        }
+        else if()
+        {
+
+        }
+
     }
 
     public void Continue()
