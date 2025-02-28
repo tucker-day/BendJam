@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03257da1e7f414429b967684d50f6c4, type: 3}
+  m_Name: InaccuracyEnding
+  m_EditorClassIdentifier: 
+  talkerSprite: {fileID: 21300000, guid: 475748d91de87fa49b4631518fcfef4b, type: 3}
+  speakingVoiceKey: DevVoice
+  speakerName: Devs
+  dialogue:
+  - 'Well, here we are at the end. '
+  - For better or for worse, you managed to shape the outcome of the world and its
+    future.
+  - You followed your heart wherever it led you, despite what the situation called
+    for.
+  - This caused a chain reaction where civilizations built on your foundations were
+    strange and warped.
+  - At least you managed to create a historical landmark adored by all; The Straight
+    Tower Of Piza!
+  - Thanks for playing! Ending 1/4
+  speed: 15

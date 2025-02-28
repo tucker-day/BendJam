@@ -73,6 +73,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3eff3be89e1dc3942ab49f515dcb44f9, type: 3}
   - key: Click
     clip: {fileID: 8300000, guid: 5dd5cced54292c6489d9ecf76c8f1939, type: 3}
+  - key: DevVoice
+    clip: {fileID: 8300000, guid: ff86d3f504f64f647a3309776c649bf4, type: 3}
   BGMSource: {fileID: 8636767175004710167}
   SFXSource: {fileID: -837564068311127944}
   loopingSFXSource: {fileID: 951359360689842112}
