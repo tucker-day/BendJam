@@ -28,7 +28,7 @@ public class GradeManager : MonoBehaviour
     private TMP_Text overallTxt;
 
     [Header("Grading Criteria - Stats")]
-    public int accuracy = 100;
+    private int accuracy = 100;
     public float speed = 100.0f;
     public int style = 100;
 
@@ -123,5 +123,20 @@ public class GradeManager : MonoBehaviour
             //5 For F Rank
             return 5;
         }
+    }
+
+    public void SetAccuracy(int accuracyGrade)
+    {
+        accuracy = accuracyGrade;
+    }
+
+    public int GetAccuracy()
+    {
+        return accuracy;
+    }
+
+    public void SetAccuracyText()
+    {
+        accTxt.text = accuracy + "%";
     }
 }

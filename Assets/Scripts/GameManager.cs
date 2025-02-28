@@ -10,11 +10,12 @@ public class GameManager : MonoBehaviour
 
     //Timer & Text
     [Header("Timer")]
-    private float timer = 3.0f;
+    private float timer;
     [SerializeField]
     private TMP_Text timerTxt;
 
     private GradeManager gradeManager;
+    private AccuracyCalculator accuracyCalculator;
 
     [SerializeField]
     private GameObject gradeScreen;
@@ -25,12 +26,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         gradeManager = FindAnyObjectByType<GradeManager>();
+        accuracyCalculator = FindAnyObjectByType<AccuracyCalculator>();
         gradeScreen.SetActive(false);
         isDone = false;
     }
 
     void Start()
     {
+
         //Timer Text Is Defaulted To Empty
         timerTxt.text = string.Empty;
     }
@@ -51,6 +54,8 @@ public class GameManager : MonoBehaviour
         {
             gradeScreen.SetActive(true);
             gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
+            gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
+            gradeManager.SetAccuracyText();
         }
        
     }
@@ -73,19 +78,19 @@ public class GameManager : MonoBehaviour
     public void DoneSword()
     {
         isDone = true;
-        if(gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 0)
+        if(gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 0)
         {
             AudioManager.instance.PlaySFX_NoPitchShift("VictoryBetter");
         }
-        else if (gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 1 || gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 2)
+        else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 1 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 2)
         {
             AudioManager.instance.PlaySFX_NoPitchShift("Victory");
         }
-        else if(gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 3 || gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 4)
+        else if(gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 3 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 4)
         {
             AudioManager.instance.PlaySFX_NoPitchShift("VictoryWorse");
         }
-        else if(gradeManager.CalcGrade(gradeManager.accuracy, gradeManager.speed, gradeManager.style) == 5)
+        else if(gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 5)
         {
             AudioManager.instance.PlaySFX_NoPitchShift("Failure");
         }
@@ -96,7 +101,11 @@ public class GameManager : MonoBehaviour
         isDone = false;
         gradeScreen.SetActive(false);
         timerTxt.color = Color.white;
-        timer = 3.0f;
+    }
+
+    public void SetTimer(float parTime)
+    {
+        timer = parTime;
     }
 
 }

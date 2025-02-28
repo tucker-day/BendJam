@@ -38,8 +38,11 @@ public class Blueprint : MonoBehaviour
 
     private Spline sword_spline;
 
+    private GameManager game_manager;
+
     private void Start()
     {
+        game_manager = FindAnyObjectByType<GameManager>();
         SetPrintVisuals();
         PlacePrint(1);
     }
@@ -71,6 +74,8 @@ public class Blueprint : MonoBehaviour
         }
 
         Instantiate(blueprints[index].GetPrintGuide());
+
+        game_manager.SetTimer(blueprints[index].GetPar());
     }
 
     public Print GetBlueprint(int index)
