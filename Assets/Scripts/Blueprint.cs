@@ -12,19 +12,42 @@ public class Blueprint : MonoBehaviour
 
     private Print[] blueprints =
     {
-        //Example blueprint
         //MUST SET THE BLUEPRINT'S LAYOUT IN "SetPrintVisuals" METHOD TO HAVE THE VISUAL INSTRUCTIONS ON SCREEN!
-        new Print(
+        new Print( //Example
             new Vector3[] { new Vector3(0, -0.5f, 0), Vector3.right},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             12f
             ),
-        new Print(
+
+        new Print( //Honourable Knight
             new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(-1, 1.5f, 0), new Vector3(-2, 2.5f, 0)},
             12f
-            )
+            ),
 
+        new Print( //City Guard
+            new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
+            new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0.5f, -0.5f, 0), new Vector3(-0.5f, 0.5f, 0), new Vector3(0.5f, 1.5f, 0), new Vector3(-0.5f, 2.5f, 0)},
+            12f
+            ),
+
+        new Print( //Adventurer
+            new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
+            new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(1f, -0.5f, 0), new Vector3(2f, 0, 0), new Vector3(3f, -0.5f, 0), new Vector3(4f, -1.35f, 0)},
+            12f
+            ),
+
+        new Print( //Farmer
+            new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(-1.15f, 0.5f, 0), new Vector3(-1f, 1.5f, 0), new Vector3(1f, 1.6f, 0)},
+            new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
+            12f
+            ),
+
+        new Print( //Thief
+            new Vector3[] { new Vector3(0.6f, 0.8f, 0), new Vector3(4.3f, 1f, 0)},
+            new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
+            12f
+            ),
     };
 
     [Header("Other needed objects")]
@@ -36,21 +59,29 @@ public class Blueprint : MonoBehaviour
     [SerializeField]
     private GameObject sword;
 
+    private GameManager game_manager;
+
     private Spline sword_spline;
 
-    private GameManager game_manager;
+    private GameObject current_sword;
+    private Transform[] goal_objects;
+    private GameObject current_layout;
 
     private void Start()
     {
         game_manager = FindAnyObjectByType<GameManager>();
         SetPrintVisuals();
-        PlacePrint(1);
+        PlacePrint(4);
     }
 
     private void SetPrintVisuals()
     {
-        blueprints[0].SetPrintGuide(blueprint_layouts[0]);
+        blueprints[0].SetPrintGuide(blueprint_layouts[0]); //straight sword
         blueprints[1].SetPrintGuide(blueprint_layouts[0]);
+        blueprints[2].SetPrintGuide(blueprint_layouts[0]);
+        blueprints[3].SetPrintGuide(blueprint_layouts[0]);
+        blueprints[4].SetPrintGuide(blueprint_layouts[1]); //sickle shape
+        blueprints[5].SetPrintGuide(blueprint_layouts[2]); //bow shape
     }
 
     public void PlacePrint(int index)
@@ -58,7 +89,7 @@ public class Blueprint : MonoBehaviour
         
         Vector3[] coords = blueprints[index].GetCoords();
 
-        Transform[] goal_objects = new Transform[coords.Length];
+        goal_objects = new Transform[coords.Length];
 
         for(int i = 0; i < coords.Length; i++)
         {
@@ -66,14 +97,15 @@ public class Blueprint : MonoBehaviour
         }
         accuracyCalculator.SetGoalPoints(goal_objects);
 
-        sword_spline = Instantiate(sword, Vector3.zero, new Quaternion()).gameObject.GetComponent<SpriteShapeController>().spline;
+        current_sword = Instantiate(sword, Vector3.zero, new Quaternion());
+        sword_spline = current_sword.gameObject.GetComponent<SpriteShapeController>().spline;
 
         for (int i = 0; i < sword_spline.GetPointCount(); i++)
         {
             sword_spline.SetPosition(i, blueprints[index].GetSplinePos()[i]);
         }
 
-        Instantiate(blueprints[index].GetPrintGuide());
+        current_layout = Instantiate(blueprints[index].GetPrintGuide());
 
         game_manager.SetTimer(blueprints[index].GetPar());
     }
@@ -81,6 +113,16 @@ public class Blueprint : MonoBehaviour
     public Print GetBlueprint(int index)
     {
         return blueprints[index];
+    }
+
+    public void CleanPrint()
+    {
+        foreach(Transform goal in goal_objects)
+        {
+            Destroy(goal.gameObject);
+        }
+        Destroy(current_sword);
+        Destroy(current_layout);
     }
 }
 
