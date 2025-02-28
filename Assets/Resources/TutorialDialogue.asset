@@ -16,6 +16,9 @@ MonoBehaviour:
   speakingVoiceKey: DevVoice
   speakerName: Devs Of This Game
   dialogue:
-  - Hello and welcome to the game :D
-  - We da devs woop woop
-  speed: 0.05
+  - Hello and welcome to the game!
+  - Throughout the story, you will need to make a sword according to the current
+    customer's needs.
+  - Feel free to try it out here, hold left click and drag to warp parts of the sword.
+  - When you're ready to move on, hit the 'Done' button! Good luck!
+  speed: 17
