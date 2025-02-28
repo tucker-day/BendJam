@@ -6,8 +6,14 @@ using UnityEngine.U2D;
 
 public class Blueprint : MonoBehaviour
 {
+    [Header("Layouts for blueprints")]
+    [SerializeField]
+    private GameObject[] blueprint_layouts;
+
     private Print[] blueprints =
     {
+        //Example blueprint
+        //MUST SET THE BLUEPRINT'S LAYOUT IN "SetPrintVisuals" METHOD TO HAVE THE VISUAL INSTRUCTIONS ON SCREEN!
         new Print(
             new Vector3[] { new Vector3(0, -0.5f, 0), Vector3.right},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
@@ -21,6 +27,7 @@ public class Blueprint : MonoBehaviour
 
     };
 
+    [Header("Other needed objects")]
     [SerializeField]
     private AccuracyCalculator accuracyCalculator;
 
@@ -33,7 +40,14 @@ public class Blueprint : MonoBehaviour
 
     private void Start()
     {
+        SetPrintVisuals();
         PlacePrint(1);
+    }
+
+    private void SetPrintVisuals()
+    {
+        blueprints[0].SetPrintGuide(blueprint_layouts[0]);
+        blueprints[1].SetPrintGuide(blueprint_layouts[0]);
     }
 
     public void PlacePrint(int index)
@@ -55,6 +69,8 @@ public class Blueprint : MonoBehaviour
         {
             sword_spline.SetPosition(i, blueprints[index].GetSplinePos()[i]);
         }
+
+        Instantiate(blueprints[index].GetPrintGuide());
     }
 
     public Print GetBlueprint(int index)
@@ -68,11 +84,13 @@ public class Print
     private Vector3[] goal_coordinates;
     private Vector3[] spline_start_positions;
     private float par_time;
+    private GameObject print_guide;
     public Print(Vector3[] g_coords, Vector3[] start_pos, float par)
     {
         this.goal_coordinates = g_coords;
         this.spline_start_positions = start_pos;
         this.par_time = par;
+        this.print_guide = null;
     }
 
     public Vector3[] GetCoords()
@@ -88,5 +106,14 @@ public class Print
     public float GetPar()
     {
         return this.par_time; 
+    }
+
+    public void SetPrintGuide(GameObject layout)
+    {
+        this.print_guide = layout;
+    }
+    public GameObject GetPrintGuide()
+    {
+        return this.print_guide;
     }
 }

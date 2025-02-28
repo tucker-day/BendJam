@@ -219,6 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39664fd67e8869946bb51c2f3859a6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blueprint_layouts:
+  - {fileID: 6732191539881904833, guid: 9e1de3c6fc016f849b0d3808b60aca32, type: 3}
   accuracyCalculator: {fileID: 2135170717}
   goal_prefab: {fileID: 1192594125576591293, guid: 32f60a776a0631f4590b2492b184c54f, type: 3}
   sword: {fileID: 6238732398707989850, guid: b84fdad7aab6f09499b88e84267fb543, type: 3}
