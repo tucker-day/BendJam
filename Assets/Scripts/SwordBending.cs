@@ -8,6 +8,9 @@ using UnityEngine.EventSystems;
 
 public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    //Custom Cursor Sprites
+    public Texture2D openH, grabH;
+
     private SpriteShapeController blade;
     private Spline blade_spline;
 
@@ -18,6 +21,9 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     void Start()
     {
+        //Default Cursor
+        Cursor.SetCursor(openH, Vector2.zero, CursorMode.Auto);
+
         blade = GetComponent<SpriteShapeController>();
         blade_spline = blade.spline;
         Debug.Log("BENDING SCRIPT IS HERE");
@@ -75,6 +81,9 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     void GrabPoint(Vector3 mouse_position)
     {
+        //Change To Grabbing Cursor
+        Cursor.SetCursor(grabH, Vector2.zero, CursorMode.Auto);
+
         Debug.Log("Grabbing!");
 
         int closest_point = 0;
@@ -96,6 +105,9 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     void EndGrab()
     {
+        //Reset Cursor
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
         grabbing = false;
 
         if (grab_point != blade_spline.GetPointCount() - 1)
@@ -112,6 +124,8 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
+
+
         if (!grabbing && !rotating)
         {
             GrabPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
@@ -120,6 +134,8 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerUp(PointerEventData eventData)
     {
+
+
         if (grabbing)
         {
             EndGrab();
