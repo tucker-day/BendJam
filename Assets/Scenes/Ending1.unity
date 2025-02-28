@@ -663,6 +663,10 @@ PrefabInstance:
       value: DialogueBox
       objectReference: {fileID: 0}
     - target: {fileID: 4685337168282011166, guid: 264c8b5695836914c94a497e45bba7bb, type: 3}
+      propertyPath: auto
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4685337168282011166, guid: 264c8b5695836914c94a497e45bba7bb, type: 3}
       propertyPath: dialogue
       value: 
       objectReference: {fileID: 11400000, guid: 0fbf9c0a4b884b348a0869d8bc7b5d28, type: 2}
