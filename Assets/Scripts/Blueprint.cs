@@ -158,6 +158,11 @@ public class Blueprint : MonoBehaviour
     {
         return blueprints.Length;
     }
+
+    public GameObject GetCurrentSword()
+    {
+        return current_sword;
+    }
 }
 
 public class Print

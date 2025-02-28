@@ -142,4 +142,9 @@ public class GradeManager : MonoBehaviour
     {
         accTxt.text = accuracy + "%";
     }
+
+    public void SetStyleText()
+    {
+        styleTxt.text = style + "%";
+    }
 }
