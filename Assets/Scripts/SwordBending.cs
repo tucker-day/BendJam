@@ -9,14 +9,19 @@ using UnityEngine.EventSystems;
 public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     //Custom Cursor Sprites
-    public Texture2D openH, grabH;
+    public Texture2D openH, grabH, brush;
 
     private SpriteShapeController blade;
     private Spline blade_spline;
 
     private bool grabbing = false;
     private bool rotating = false;
+    private bool polishing = false;
+
     private int grab_point;
+
+    private float polish = 0.5f;
+    private float last_y;
 
 
     void Start()
@@ -27,6 +32,8 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         blade = GetComponent<SpriteShapeController>();
         blade_spline = blade.spline;
         Debug.Log("BENDING SCRIPT IS HERE");
+
+        blade.spriteShapeRenderer.color = new Color(1 - polish,1 - polish,1 - polish);
     }
 
     
@@ -34,48 +41,34 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //if (Input.GetMouseButtonDown(0) && mousePos.y > blade.spline.GetPosition(2).y)
-        //{
-        //    blade_spline.SetPosition(2, new Vector3(blade.spline.GetPosition(2).x, blade.spline.GetPosition(2).y - 0.5f));
-        //    Debug.Log(mousePos.y);
-        //}
-        //else if(Input.GetMouseButtonDown(0) && mousePos.y < blade.spline.GetPosition(2).y)
-        //{
-        //    blade_spline.SetPosition(2, new Vector3(blade.spline.GetPosition(2).x, blade.spline.GetPosition(2).y + 0.5f));
-        //}
-
         if (grabbing)
         {
             blade_spline.SetPosition(grab_point, mousePos);
         }
         else if (rotating)
         {
-            //float oldY = blade_spline.GetRightTangent(grab_point).y;
-            //float oldX = blade_spline.GetRightTangent(grab_point).x;
 
             blade_spline.SetRightTangent(grab_point, mousePos);
             
             if(grab_point == blade_spline.GetPointCount()) { blade_spline.SetLeftTangent(grab_point, mousePos); }
-            if (blade_spline.GetPointCount() > grab_point)
-            {
-                //for (int i = grab_point + 1; i < blade_spline.GetPointCount(); i++)
-                //{
-                //    //Vector3 direction = blade_spline.GetPosition(i) - blade_spline.GetPosition(grab_point);
-                //    //direction = Quaternion.Euler(blade_spline.GetRightTangent(grab_point)) * direction;
-                //    //Vector3 original_rotation = blade_spline.GetRightTangent(i);
-                //    //blade_spline.SetPosition(i, blade_spline.GetRightTangent(grab_point) + blade_spline.GetPosition(i-1));
-                //    //blade_spline.SetRightTangent(i, original_rotation);
-
-                //    float angle = (blade_spline.GetRightTangent(grab_point).y - oldY) + (blade_spline.GetRightTangent(grab_point).x - oldX);
-
-                //    blade_spline.SetPosition(i, calcRotation(blade_spline.GetPosition(grab_point), blade_spline.GetPosition(i), angle));
-                //}
-            }
+            
         }
 
         if (Input.GetMouseButtonDown(0) && rotating)
         {
             EndRotate();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if(polishing)
+            {
+                StopPolish();
+            }
+            else if (!grabbing && !rotating)
+            {
+                StartPolish();
+            }
         }
     }
 
@@ -117,6 +110,18 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
     }
 
+    void StartPolish()
+    {
+        polishing = true;
+        Cursor.SetCursor(brush, Vector2.zero, CursorMode.Auto);
+    }
+
+    void StopPolish()
+    {
+        polishing = false;
+        Cursor.SetCursor(openH, Vector2.zero, CursorMode.Auto);
+    }
+
     void EndRotate()
     {
         rotating = false;
@@ -125,8 +130,11 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerDown(PointerEventData eventData)
     {
 
-
-        if (!grabbing && !rotating)
+        if (polishing)
+        {
+            last_y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+        }
+        else if (!grabbing && !rotating)
         {
             GrabPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
@@ -139,6 +147,19 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (grabbing)
         {
             EndGrab();
+        }else if (polishing)
+        {
+            float stroke = (Camera.main.ScreenToWorldPoint(Input.mousePosition).y - last_y) / 20;
+            if (stroke < polish && stroke > 0)
+            {
+                polish -= stroke;
+            }
+            else if(stroke > 0)
+            {
+                polish = 0;
+            }
+            Debug.Log("Polish level is: " + polish);
+            blade.spriteShapeRenderer.color = new Color(1 - polish, 1 - polish, 1 - polish);
         }
     }
 
@@ -152,6 +173,13 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
 
         return points;
+    }
+
+    public int GetPolishScore()
+    {
+        float percentPolish = polish * 200;
+        int score = 100 - (int)percentPolish;
+        return score;
     }
     
     private Vector3 calcRotation(Vector3 origin, Vector3 point, float angle)
