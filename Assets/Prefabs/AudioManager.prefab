@@ -47,7 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6970004cb20c0043bd0e0c288ec97ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempBGMList: []
+  tempBGMList:
+  - key: BendJam
+    clip: {fileID: 8300000, guid: f73f86a9800ed00489fc21903e2932c9, type: 3}
+  - key: Bentnu
+    clip: {fileID: 8300000, guid: f0bb16edb146c77408775fc053e01987, type: 3}
   tempSFXList:
   - key: Voice1
     clip: {fileID: 8300000, guid: b4965db662a9f6446bd24c053100ccac, type: 3}
@@ -87,7 +91,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
