@@ -16,6 +16,7 @@ public class DialogueSystem : MonoBehaviour
     private Vector2 offscreenPos = new Vector2(0, -750);
     public bool coroutineRunning = false;
     private bool continueDialogue = false;
+    public bool auto = false;
 
     public void Start()
     {
@@ -23,7 +24,7 @@ public class DialogueSystem : MonoBehaviour
         rectTransform.anchoredPosition = offscreenPos;
 
         // Temp thing. Remove later.
-        // StartDialogue(dialogue);
+        if (auto) StartDialogue(dialogue);
     }
 
     public void Update()
