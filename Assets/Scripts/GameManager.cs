@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
         //Timer Text Is Defaulted To Empty
         timerTxt.text = string.Empty;
         printManager.PlacePrint(current_print);
+
+        AudioManager.instance.PlayBGMFade("BendJam");
     }
 
     void Update()
