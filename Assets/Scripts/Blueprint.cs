@@ -9,10 +9,16 @@ public class Blueprint : MonoBehaviour
     private Print[] blueprints =
     {
         new Print(
-            new Vector3[] {Vector3.zero, Vector3.right},
+            new Vector3[] { new Vector3(0, -0.5f, 0), Vector3.right},
             new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
             12f
+            ),
+        new Print(
+            new Vector3[] { new Vector3(0, -0.5f, 0), new Vector3(0, 1.5f, 0), new Vector3(0, 2.5f, 0)},
+            new Vector3[] {new Vector3(0, -1.35f, 0), new Vector3(0, -0.5f, 0), new Vector3(0, 0.5f, 0), new Vector3(-1, 1.5f, 0), new Vector3(-2, 2.5f, 0)},
+            12f
             )
+
     };
 
     [SerializeField]
@@ -27,7 +33,7 @@ public class Blueprint : MonoBehaviour
 
     private void Start()
     {
-        PlacePrint(0);
+        PlacePrint(1);
     }
 
     public void PlacePrint(int index)
