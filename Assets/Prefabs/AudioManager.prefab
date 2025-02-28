@@ -72,7 +72,7 @@ MonoBehaviour:
   - key: Hammer
     clip: {fileID: 8300000, guid: 3eff3be89e1dc3942ab49f515dcb44f9, type: 3}
   - key: Click
-    clip: {fileID: 8300000, guid: 98447d5415c18c64bb4245730512fa07, type: 3}
+    clip: {fileID: 8300000, guid: 5dd5cced54292c6489d9ecf76c8f1939, type: 3}
   BGMSource: {fileID: 8636767175004710167}
   SFXSource: {fileID: -837564068311127944}
   loopingSFXSource: {fileID: 951359360689842112}
