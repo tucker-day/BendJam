@@ -67,4 +67,9 @@ public class SettingsMenuManager : MonoBehaviour
     {
         AudioManager.instance.SetVolumeMusic(musicAudioSlider.value);
     }
+
+    public void PlayClick()
+    {
+        AudioManager.instance.PlaySFX_PitchShift("Click");
+    }
 }
