@@ -55,4 +55,9 @@ public class PauseMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void PlayClick()
+    {
+        AudioManager.instance.PlaySFX_PitchShift("Click");
+    }
 }
