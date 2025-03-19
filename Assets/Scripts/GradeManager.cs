@@ -121,10 +121,14 @@ public class GradeManager : MonoBehaviour
             //4 For D Rank
             return 4;
         }
-        else
+        else if(avg < 35)
         {
             //5 For F Rank
             return 5;
+        }
+        else
+        {
+            return -1;
         }
     }
 

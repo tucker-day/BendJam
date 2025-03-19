@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
         Time.timeScale = 1f;
         gradeManager = FindAnyObjectByType<GradeManager>();
         accuracyCalculator = FindAnyObjectByType<AccuracyCalculator>();
@@ -120,22 +121,39 @@ public class GameManager : MonoBehaviour
     public void DoneSword()
     {
         AudioManager.instance.PlaySFX_NoPitchShift("Click");
+
+        isDone = true;
+
+        printManager.CleanPrint();
+        current_print++;
+
+        gradeScreen.SetActive(true);
+        gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
+        gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
+        gradeManager.SetAccuracyText();
+        gradeManager.style = printManager.GetCurrentSword().GetComponent<SwordBending>().GetPolishScore();
+        gradeManager.SetStyleText();
+
+        totalAccuracy += accuracyCalculator.CalcAccuracy();
+        totalSpeed += (int)gradeManager.speed;
+
         if (!printManager.dialoguePlaying && Time.timeScale != 0)
         {
-            isDone = true;
             if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 0)
             {
                 AudioManager.instance.PlaySFX_NoPitchShift("VictoryBetter");
                 totalSRanks++;
             }
-            else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 1 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 2)
+            else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 1)
             {
                 AudioManager.instance.PlaySFX_NoPitchShift("Victory");
                 totalSRanks++;
+
             }
-            else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 3 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 4)
+            else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 2 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 3 || gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 4)
             {
                 AudioManager.instance.PlaySFX_NoPitchShift("VictoryWorse");
+
             }
             else if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 5)
             {
@@ -143,24 +161,11 @@ public class GameManager : MonoBehaviour
                 totalFRanks++;
             }
 
-            printManager.CleanPrint();
-            current_print++;
-
-            gradeScreen.SetActive(true);
-            gradeManager.spdTxt.text = Math.Round(gradeManager.speed, 0, MidpointRounding.AwayFromZero).ToString() + "%";
-            gradeManager.SetAccuracy(accuracyCalculator.CalcAccuracy());
-            gradeManager.SetAccuracyText();
-            gradeManager.style = printManager.GetCurrentSword().GetComponent<SwordBending>().GetPolishScore();
-            gradeManager.SetStyleText();
-
-            totalAccuracy += accuracyCalculator.CalcAccuracy();
-            totalSpeed += (int)gradeManager.speed;
         }
     }
 
     public void Continue()
     {
-        gradeManager.speed = 100;
         AudioManager.instance.PlaySFX_NoPitchShift("Click");
         float totalAccuracyAvg = totalAccuracy / (printManager.PrintCount() - 1);
         float totalSpeedAvg = totalSpeed / (printManager.PrintCount() - 1);
@@ -197,6 +202,8 @@ public class GameManager : MonoBehaviour
         isDone = false;
         gradeScreen.SetActive(false);
         timerTxt.color = Color.white;
+        Debug.Log("F Ranks: " + totalFRanks);
+        gradeManager.speed = 100;
     }
 
     public void SetTimer(float parTime)
