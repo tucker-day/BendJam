@@ -8,7 +8,13 @@ public class BackScript : MonoBehaviour
 {
     public void BackButton()
     {
-        SceneManager.LoadScene("MainMenu");
         AudioManager.instance.PlaySFX_NoPitchShift("Click");
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        AudioManager.instance.PlaySFX_NoPitchShift("Click");
+        Application.Quit();
     }
 }

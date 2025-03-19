@@ -14,11 +14,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGameScene()
     {
+        PlayClick();
         SceneManager.LoadScene("Tutorial");
     }
 
     public void GoToSettings()
     {
+        PlayClick();
         GameObject settingsMenu = Instantiate(settingsMenuPrefab, gameObject.GetComponentInParent<Transform>());
         SettingsMenuManager settingsMenuManager = settingsMenu.GetComponent<SettingsMenuManager>();
         settingsMenuManager.backButton.onClick.AddListener(ReturnFromSettings);
@@ -27,21 +29,24 @@ public class MainMenuManager : MonoBehaviour
 
     public void ReturnFromSettings()
     {
+        PlayClick();
         mainMenu.SetActive(true);
     }
 
     public void OpenCredits()
     {
+        PlayClick();
         SceneManager.LoadScene("Credits");
     }
 
     public void ExitGame()
     {
+        PlayClick();
         Application.Quit();
     }
 
     public void PlayClick()
     {
-        AudioManager.instance.PlaySFX_PitchShift("Click");
+        AudioManager.instance.PlaySFX_NoPitchShift("Click");
     }
 }

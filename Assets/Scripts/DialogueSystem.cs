@@ -18,6 +18,8 @@ public class DialogueSystem : MonoBehaviour
     private bool continueDialogue = false;
     public bool auto = false;
 
+    public bool dialogueActive = false;
+
     public void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -54,6 +56,9 @@ public class DialogueSystem : MonoBehaviour
 
     public IEnumerator DialogueLoop()
     {
+        //Dialogue Is Set To Active
+        dialogueActive = true;
+
         gameObject.SetActive(true);
         rectTransform.anchoredPosition = offscreenPos;
         continueDialogue = false;
@@ -102,5 +107,6 @@ public class DialogueSystem : MonoBehaviour
 
         continueDialogue = false;
         coroutineRunning = false;
+        dialogueActive = false;
     }
 }
