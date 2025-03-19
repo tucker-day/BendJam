@@ -162,6 +162,7 @@ public class GameManager : MonoBehaviour
 
     public void Continue()
     {
+        AudioManager.instance.PlaySFX_NoPitchShift("Click");
         float totalAccuracyAvg = totalAccuracy / (printManager.PrintCount() - 1);
         float totalSpeedAvg = totalSpeed / (printManager.PrintCount() - 1);
 

@@ -2363,6 +2363,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GradeMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2911435105310403484, guid: 266a48595e9c85f449239e60c554691b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7509081442646054985, guid: 266a48595e9c85f449239e60c554691b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2447,10 +2451,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1887710658}
-    - target: {fileID: 7922643853555663152, guid: 266a48595e9c85f449239e60c554691b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Continue
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
