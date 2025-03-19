@@ -155,13 +155,12 @@ public class GameManager : MonoBehaviour
 
             totalAccuracy += accuracyCalculator.CalcAccuracy();
             totalSpeed += (int)gradeManager.speed;
-
-            gradeManager.speed = 100;
         }
     }
 
     public void Continue()
     {
+        gradeManager.speed = 100;
         AudioManager.instance.PlaySFX_NoPitchShift("Click");
         float totalAccuracyAvg = totalAccuracy / (printManager.PrintCount() - 1);
         float totalSpeedAvg = totalSpeed / (printManager.PrintCount() - 1);
