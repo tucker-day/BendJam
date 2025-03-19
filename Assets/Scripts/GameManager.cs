@@ -32,8 +32,13 @@ public class GameManager : MonoBehaviour
     private int totalSpeed = 0;
     private int totalAccuracy = 0;
 
+    [Header("Pause Menu")]
+    [SerializeField]
+    private GameObject pauseMenu;
+
     private void Awake()
     {
+        Time.timeScale = 1f;
         gradeManager = FindAnyObjectByType<GradeManager>();
         accuracyCalculator = FindAnyObjectByType<AccuracyCalculator>();
         printManager = FindAnyObjectByType<Blueprint>();
@@ -43,6 +48,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //Reset Scores (For Replayability)
+        totalSRanks = 0;
+        totalFRanks = 0;
+        totalSpeed = 0;
+        totalAccuracy = 0;
 
         //Timer Text Is Defaulted To Empty
         timerTxt.text = string.Empty;
@@ -53,6 +63,20 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //Pause & Unpause Mechanics
+        if (Input.GetKeyDown(KeyCode.Escape) && !printManager.dialoguePlaying)
+        {
+            if(Time.timeScale == 1)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
+
+
         if(!isDone && !printManager.dialoguePlaying)
         {
             timer -= Time.deltaTime * 1f;
@@ -60,10 +84,22 @@ public class GameManager : MonoBehaviour
 
             if (timer < 0 && gradeManager.speed > 0 && !isDone)
             {
-                gradeManager.speed -= Time.deltaTime * 1f;
+                gradeManager.speed -= Time.deltaTime * 1.5f;
             }
         }
        
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
     }
 
     public void DisplayTimer()
@@ -83,7 +119,8 @@ public class GameManager : MonoBehaviour
 
     public void DoneSword()
     {
-        if (!printManager.dialoguePlaying)
+        AudioManager.instance.PlaySFX_NoPitchShift("Click");
+        if (!printManager.dialoguePlaying && Time.timeScale != 0)
         {
             isDone = true;
             if (gradeManager.CalcGrade(gradeManager.GetAccuracy(), gradeManager.speed, gradeManager.style) == 0)
@@ -141,14 +178,17 @@ public class GameManager : MonoBehaviour
             {
                 SceneManager.LoadScene("Ending2");
             }
-            else if (totalSpeedAvg < 35)
+            //Speed Too Low But Not All F Ranks
+            else if (totalSpeedAvg < 35 && totalAccuracyAvg > 35)
             {
                 SceneManager.LoadScene("Ending3");
             }
-            else if(totalAccuracyAvg < 35)
+            //Not Accurate But Fast
+            else if(totalAccuracyAvg < 35 && totalSpeedAvg > 35)
             {
                 SceneManager.LoadScene("Ending1");
             }
+            //Mediocre
             else
             {
                 SceneManager.LoadScene("Ending5");
