@@ -270,6 +270,7 @@ MonoBehaviour:
   openH: {fileID: 2800000, guid: f5f72638debbf3d438283b6861114901, type: 3}
   grabH: {fileID: 2800000, guid: d8ad42bde11d06245a43a2e9335ed60a, type: 3}
   brush: {fileID: 2800000, guid: b8330b3e362a84542811b66c9bba5dfc, type: 3}
+  blow: {fileID: 2800000, guid: a2c219ba36edc2642bd213deb88fd88c, type: 3}
 --- !u!50 &6145186604509181982
 Rigidbody2D:
   serializedVersion: 4
