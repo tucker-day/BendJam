@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c03257da1e7f414429b967684d50f6c4, type: 3}
-  m_Name: TutorialPt2
+  m_Name: TutorialPt3
   m_EditorClassIdentifier: 
   talkerSprite: {fileID: 21300000, guid: 475748d91de87fa49b4631518fcfef4b, type: 3}
   speakingVoiceKey: DevVoice
   speakerName: Devs
   dialogue:
-  - Great! Next, we'll talk about POLISHING the sword.
-  - First, press 'F' to toggle to your POLISH TOOL.
-  - Next, LEFT or RIGHT click, hold and drag in an UPWARDS motion then release.
-  - The sword will slowly become more shiny! Polishing your sword adds points to
-    the STYLE category for grading.
+  - Perfect! Lastly, we'll talk about ROTATION.
+  - Press 'R' to toggle to your ROTATION TOOL. Once equipped, click and drag to rotate
+    the points wherever you wish.
+  - That's all for now! When you're ready to move on , hit the 'DONE' button.
   speed: 17
