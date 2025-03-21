@@ -13,7 +13,7 @@ public class DialogueSystem : MonoBehaviour
 
     public DialogueStorage dialogue;
     private RectTransform rectTransform;
-    private Vector2 offscreenPos = new Vector2(0, -750);
+    private Vector2 offscreenPos = new Vector2(0, -950);
     public bool coroutineRunning = false;
     private bool continueDialogue = false;
     public bool auto = false;
