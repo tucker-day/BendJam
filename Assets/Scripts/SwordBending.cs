@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     //Custom Cursor Sprites
-    public Texture2D openH, grabH, brush;
+    public Texture2D openH, grabH, brush, blow;
 
     private SpriteShapeController blade;
     private Spline blade_spline;
@@ -17,6 +17,7 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private bool grabbing = false;
     private bool rotating = false;
     private bool polishing = false;
+    private bool rotateMode = false;
 
     private int grab_point;
 
@@ -53,10 +54,10 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             
         }
 
-        if (Input.GetMouseButtonDown(0) && rotating)
-        {
-            EndRotate();
-        }
+        //if (Input.GetMouseButtonDown(0) && rotating)
+        //{
+        //    EndRotate();
+        //}
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -64,9 +65,27 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             {
                 StopPolish();
             }
-            else if (!grabbing && !rotating)
+            else if (!grabbing && !rotating && !rotateMode)
             {
                 StartPolish();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (rotateMode)
+            {
+                //Reset Cursor
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
+                rotateMode = false;
+            }
+            else if (!grabbing && !rotating && !polishing && !rotateMode)
+            {
+                //Change To Grabbing Cursor
+                Cursor.SetCursor(blow, Vector2.zero, CursorMode.Auto);
+
+                rotateMode = true;
             }
         }
     }
@@ -100,10 +119,10 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         grabbing = false;
 
-        if (grab_point != blade_spline.GetPointCount() - 1)
-        {
-            rotating = true;
-        }
+        //if (grab_point != blade_spline.GetPointCount() - 1)
+        //{
+        //    rotating = true;
+        //}
     }
 
     void StartPolish()
@@ -118,6 +137,26 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         Cursor.SetCursor(openH, Vector2.zero, CursorMode.Auto);
     }
 
+    void RotatePoint(Vector3 mouse_position)
+    {
+
+        int closest_point = 0;
+        float dist_to_mouse = 0;
+
+        for (int i = 1; i < blade_spline.GetPointCount(); i++)
+        {
+            float point_to_mouse = MathF.Sqrt(MathF.Pow((mouse_position.x - blade_spline.GetPosition(i).x), 2) + MathF.Pow((mouse_position.y - blade_spline.GetPosition(i).y), 2));
+            if (point_to_mouse < dist_to_mouse || i == 1)
+            {
+                dist_to_mouse = point_to_mouse;
+                closest_point = i;
+            }
+        }
+
+        grab_point = closest_point;
+        rotating = true;
+    }
+
     void EndRotate()
     {
         rotating = false;
@@ -129,6 +168,10 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (polishing)
         {
             last_y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+        }
+        else if(rotateMode)
+        {
+            RotatePoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
         else if (!grabbing && !rotating)
         {
@@ -143,7 +186,8 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (grabbing)
         {
             EndGrab();
-        }else if (polishing)
+        }
+        else if (polishing)
         {
             float stroke = (Camera.main.ScreenToWorldPoint(Input.mousePosition).y - last_y) / 20;
             if (stroke < polish && stroke > 0)
@@ -155,6 +199,10 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 polish = 0;
             }
             blade.spriteShapeRenderer.color = new Color(1 - polish, 1 - polish, 1 - polish);
+        }
+        else if(rotating)
+        {
+            EndRotate();
         }
     }
 
