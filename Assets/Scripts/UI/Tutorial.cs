@@ -11,6 +11,7 @@ public class Tutorial : MonoBehaviour
     //Checks That Part 1 Is Completed
     private bool partOneDone = false;
     private bool partTwoDone = false;
+    private bool partThreeDone = false;
 
 
     //Done & Next Buttons
@@ -40,7 +41,7 @@ public class Tutorial : MonoBehaviour
     //Click Amount
     private short clicks = 0;
 
-    private float timer = 5.0f;
+    public float timer = 5.0f;
 
     private void Awake()
     {
@@ -53,18 +54,26 @@ public class Tutorial : MonoBehaviour
     {
         //Default All Buttons To Inactive
         nextButton.SetActive(false);
+        nextButton2.SetActive(false);
         doneButton.SetActive(false);
 
         //Default To False
         partOneDone = false;
+        partTwoDone = false;
+        partThreeDone = false;
+        timer = 5;
     }
 
     private void Update()
     {
-        if (partTwoDone && timer >= 0)
+        if (timer >= 0 && partTwoDone)
         {
             //5 Second Timer IDK
             timer -= Time.deltaTime * 1.0f;
+        }
+        else if(timer <= 0)
+        {
+            partThreeDone = true;
         }
 
         //If The Player Clicks Outside Dialogue, Add 1 To Click Total
@@ -87,7 +96,7 @@ public class Tutorial : MonoBehaviour
             partTwoDone = true;
             nextButton2.SetActive(true);
         }
-        else if(timer <= 0 && partTwoDone)
+        else if(timer <= 0 && partThreeDone)
         {
             //Activate The Done Button
             doneButton.SetActive(true);
