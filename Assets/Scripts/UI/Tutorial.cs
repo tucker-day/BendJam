@@ -116,11 +116,8 @@ public class Tutorial : MonoBehaviour
     //Loads The Game
     public void Done()
     {
-        if(!dSys.dialogueActive)
-        {
-            AudioManager.instance.PlaySFX_NoPitchShift("Click");
-            SceneManager.LoadScene("MainGame");
-        }
+        AudioManager.instance.PlaySFX_NoPitchShift("Click");
+        SceneManager.LoadScene("MainGame");
 
     }
 
