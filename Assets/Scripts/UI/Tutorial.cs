@@ -59,9 +59,6 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
-        //I'm A Dummy Ahh Fix
-        Time.timeScale = 1;
-
         //Reset Dialogue To Beginning
         dSys.StartDialogue(dialogue1);
 

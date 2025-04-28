@@ -8,6 +8,9 @@ public class BackScript : MonoBehaviour
 {
     public void BackButton()
     {
+        //I'm A Dummy Ahh Fix
+        Time.timeScale = 1;
+
         AudioManager.instance.PlaySFX_NoPitchShift("Click");
         SceneManager.LoadScene("MainMenu");
     }
