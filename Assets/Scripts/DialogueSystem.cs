@@ -22,6 +22,8 @@ public class DialogueSystem : MonoBehaviour
 
     public void Start()
     {
+        coroutineRunning = false;
+        dialogueActive = false;
         rectTransform = GetComponent<RectTransform>();
         rectTransform.anchoredPosition = offscreenPos;
 

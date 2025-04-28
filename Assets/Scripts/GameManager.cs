@@ -202,7 +202,6 @@ public class GameManager : MonoBehaviour
         isDone = false;
         gradeScreen.SetActive(false);
         timerTxt.color = Color.white;
-        Debug.Log("F Ranks: " + totalFRanks);
         gradeManager.speed = 100;
     }
 

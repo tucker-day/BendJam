@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
-using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public struct AudioClipWithKey

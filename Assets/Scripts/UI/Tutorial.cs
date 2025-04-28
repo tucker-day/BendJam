@@ -30,6 +30,12 @@ public class Tutorial : MonoBehaviour
     //Reference To Dialogue System
     private DialogueSystem dSys;
 
+
+    [Header("Dialogue")]
+    //Reset To Primary Dialogue
+    [SerializeField]
+    private DialogueStorage dialogue1;
+
     //Secondary Dialogue
     [SerializeField]
     private DialogueStorage dialogue2;
@@ -41,7 +47,8 @@ public class Tutorial : MonoBehaviour
     //Click Amount
     private short clicks = 0;
 
-    public float timer = 5.0f;
+    //Timer For Third Part IG?
+    public float timer = 10.0f;
 
     private void Awake()
     {
@@ -52,6 +59,12 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
+        //I'm A Dummy Ahh Fix
+        Time.timeScale = 1;
+
+        //Reset Dialogue To Beginning
+        dSys.StartDialogue(dialogue1);
+
         //Default All Buttons To Inactive
         nextButton.SetActive(false);
         nextButton2.SetActive(false);
@@ -61,7 +74,7 @@ public class Tutorial : MonoBehaviour
         partOneDone = false;
         partTwoDone = false;
         partThreeDone = false;
-        timer = 5;
+        timer = 10.0f;
     }
 
     private void Update()
@@ -106,8 +119,12 @@ public class Tutorial : MonoBehaviour
     //Loads The Game
     public void Done()
     {
-        AudioManager.instance.PlaySFX_NoPitchShift("Click");
-        SceneManager.LoadScene("MainGame");
+        if(!dSys.dialogueActive)
+        {
+            AudioManager.instance.PlaySFX_NoPitchShift("Click");
+            SceneManager.LoadScene("MainGame");
+        }
+
     }
 
     //Moves Forward In The Tutorial
