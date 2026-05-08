@@ -54,16 +54,15 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             
         }
 
-        //if (Input.GetMouseButtonDown(0) && rotating)
-        //{
-        //    EndRotate();
-        //}
-
         if (Input.GetKeyDown(KeyCode.F))
         {
             if(polishing)
             {
                 StopPolish();
+            }
+            else if(!polishing && rotateMode && rotating)
+            {
+                StartPolish();
             }
             else if (!grabbing && !rotating && !rotateMode)
             {
@@ -73,6 +72,7 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            //If Rotating; Stop Rotating.
             if (rotateMode)
             {
                 //Reset Cursor
@@ -80,9 +80,19 @@ public class SwordBending : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
                 rotateMode = false;
             }
+            //If You Are In Polish Mode; Change To Rotating
+            else if(!grabbing && !rotateMode && !rotating && polishing)
+            {
+                //Change To Rotating Cursor
+                Cursor.SetCursor(blow, Vector2.zero, CursorMode.Auto);
+
+                rotateMode = true;
+                polishing = false;
+            }
+            //If Nothing Else; Change To Rotating
             else if (!grabbing && !rotating && !polishing && !rotateMode)
             {
-                //Change To Grabbing Cursor
+                //Change To Rotating Cursor
                 Cursor.SetCursor(blow, Vector2.zero, CursorMode.Auto);
 
                 rotateMode = true;
